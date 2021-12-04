@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">Application_Boulangerie</string>
+    <string name="produit_id">Id</string>
+    <string name="produit_nom">Produit</string>
+    <string name="produit_prix">Prix</string>
+    <string name="produit_quantite">Quantite</string>
+    <string name="produit_ingredient">Ingredients</string>
+    <string name="produit_categorie">Categorie</string>
+    <string name="page_lists_produit">page_lists_produit</string>
+    <string name="information_delete">Supprimer ce produit?!</string>
+    <string name="fermer_page">Fermer</string>
+    <string name="image_du_button_modifier">image du button modifier</string>
+    <string name="image_du_button_supprimer">image du button supprimer</string>
+    <string name="image_du_produit">image du produit</string>
+    <string name="image_du_page_produit">image du page produit</string>
+    <string name="modifier">Modifier</string>
+    <string name="information_de_produit">Information de produit:</string>
+    <string name="votre_reponse">Votre reponse:</string>
+    <string name="button_commencer">button_commencer</string>
+    <string name="image_page_acceuil">image page acceuil</string>
+    <string name="afficher">Afficher</string>
+
+</resources>

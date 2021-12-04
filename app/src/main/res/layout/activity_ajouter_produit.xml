@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AjouterProduit">
+
+    <ImageView
+        android:id="@+id/ima_page_ajouter_produit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/image_page_ajouter_produit" />
+
+    <Button
+        android:id="@+id/b_valide_ajouter_produit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="50dp"
+        android:layout_marginStart="100dp"
+        android:background="@drawable/group_valide"
+        android:onClick="act_valide_ajouter_produit"
+        android:radius="100dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <ImageButton
+        android:id="@+id/ib_retour_page_liste_produit"
+        android:layout_width="51dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="4dp"
+        android:backgroundTint="@color/brown_fonce"
+        android:onClick="act_retour_pageListProduit"
+        android:radius="100dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/ic_menu_revert"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="100dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_produit_nom_update"
+                style="@style/DigitTxtStyleStyle"
+                android:text="@string/produit_nom" />
+            <EditText
+                android:id="@+id/edt_produit_nom_cree"
+                style="@style/DigitTxtEditerStyleStyle"
+                android:layout_weight="1"
+                android:ems="10"
+                android:hint="@string/produit_nom"
+                android:inputType="textPersonName"
+                android:minHeight="48dp" />
+
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_produit_prix_update"
+                style="@style/DigitTxtStyleStyle"
+                android:text="@string/produit_prix" />
+
+            <EditText
+                android:id="@+id/edt_produit_prix_cree"
+                style="@style/DigitTxtEditerStyleStyle"
+                android:layout_weight="1"
+                android:ems="10"
+                android:hint="@string/produit_prix"
+                android:inputType="number|numberDecimal"
+                android:minHeight="48dp" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_produit_quantite_update"
+                style="@style/DigitTxtStyleStyle"
+                android:text="@string/produit_quantite" />
+
+            <EditText
+                android:id="@+id/edt_produit_quantite_cree"
+                style="@style/DigitTxtEditerStyleStyle"
+                android:layout_weight="1"
+                android:ems="10"
+                android:hint="@string/produit_quantite"
+                android:inputType="number"
+                android:minHeight="48dp" />
+
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_produit_ingredient_update"
+                style="@style/DigitTxtStyleStyle"
+                android:text="@string/produit_ingredient" />
+            <EditText
+                android:id="@+id/edt_produit_ingredient_cree"
+                style="@style/DigitTxtEditerStyleStyle"
+                android:layout_weight="1"
+                android:ems="10"
+                android:hint="@string/produit_ingredient"
+                android:inputType="textMultiLine"
+                android:minHeight="48dp" />
+
+
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="80dp"
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+</android.support.constraint.ConstraintLayout>
