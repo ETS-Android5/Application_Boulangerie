@@ -2,11 +2,8 @@ package com.application_boulangerie;
 
 import android.graphics.Color;
 import android.os.AsyncTask;
-import android.os.Build;
-import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -17,17 +14,13 @@ import com.application_boulangerie.extrafonctions.AppelIntent;
 import com.application_boulangerie.extrafonctions.AppelToast;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.reflect.TypeToken;
-import com.owlike.genson.Genson;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.lang.reflect.Type;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.List;
 import java.util.Scanner;
 
 public class AjouterProduit extends AppCompatActivity {
@@ -49,10 +42,10 @@ public class AjouterProduit extends AppCompatActivity {
     // On associe le XML avec le JAVA
     private void fct_associationViewAuJava() {
         this.tv_message = findViewById(R.id.tv_message);
-        this.edt_produit_nom_cree = findViewById(R.id.edt_produit_nom_cree);
-        this.edt_produit_prix_cree = findViewById(R.id.edt_produit_prix_cree);
-        this.edt_produit_quantite_cree = findViewById(R.id.edt_produit_quantite_cree);
-        this.edt_produit_ingredient_cree = findViewById(R.id.edt_produit_ingredient_cree);
+        this.edt_produit_nom_cree = findViewById(R.id.edt_produit_nom_update);
+        this.edt_produit_prix_cree = findViewById(R.id.edt_produit_prix_update);
+        this.edt_produit_quantite_cree = findViewById(R.id.edt_produit_quantite_update);
+        this.edt_produit_ingredient_cree = findViewById(R.id.edt_produit_ingredient_update);
     }
 
     public void act_retour_pageListProduit(View view) {
@@ -78,7 +71,7 @@ public class AjouterProduit extends AppCompatActivity {
     private void ajoutProduit(Produit produit, TextView tv_message) {
 
         AppelToast.displayCustomToast(this,"Nouveau produit est créé");
-        String textUrl = "http://192.168.43.189:8080/Bouglangerie/webapi/produit/insertionProduit";
+        String textUrl = "http://192.168.43.190:8080/Bouglangerie/webapi/produit/insertionProduit";
         String methode = "POST";
 
         // Convertir produit java en Json

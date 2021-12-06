@@ -46,7 +46,7 @@ public class PageListeProduits extends AppCompatActivity {
         this.tl = findViewById(R.id.tl_list_produit);
 
         // Get connection to HTTP server throw Thread
-        String textUrl= "http://192.168.43.189:8080/Bouglangerie/webapi/produit/getAllProduits";
+        String textUrl= "http://192.168.43.190:8080/Bouglangerie/webapi/produit/getAllProduits";
         String methode = "GET";
 
         SendHttpRequestTask t = new SendHttpRequestTask();

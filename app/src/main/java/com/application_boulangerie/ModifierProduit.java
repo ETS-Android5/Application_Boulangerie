@@ -1,6 +1,5 @@
 package com.application_boulangerie;
 
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
@@ -16,11 +15,8 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
-import java.io.BufferedReader;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.OutputStream;
-import java.io.Reader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Scanner;
@@ -55,12 +51,12 @@ public class ModifierProduit extends AppCompatActivity {
 
     // On associe le XML avec le JAVA
     private void fct_associationViewAuJava(){
-        this.tv_message_modifier = findViewById(R.id.tv_message);
+        this.tv_message_modifier = findViewById(R.id.tv_message_modifier);
         this.edt_produit_id_update = findViewById(R.id.edt_produit_id_update);
-        this.edt_produit_nom_update = findViewById(R.id.edt_produit_nom_cree);
-        this.edt_produit_prix_update = findViewById(R.id.edt_produit_prix_cree);
-        this.edt_produit_quantite_update = findViewById(R.id.edt_produit_quantite_cree);
-        this.edt_produit_ingredient_update = findViewById(R.id.edt_produit_ingredient_cree);
+        this.edt_produit_nom_update = findViewById(R.id.edt_produit_nom_update);
+        this.edt_produit_prix_update = findViewById(R.id.edt_produit_prix_update);
+        this.edt_produit_quantite_update = findViewById(R.id.edt_produit_quantite_update);
+        this.edt_produit_ingredient_update = findViewById(R.id.edt_produit_ingredient_update);
     }
 
     public void act_valide_update_produit(View view) {
@@ -85,7 +81,7 @@ public class ModifierProduit extends AppCompatActivity {
 
     private void modifierProduit(Produit produit, TextView tv_message_modifier) {
 
-        String textUrl = "http://192.168.43.189:8080/Bouglangerie/webapi/produit/updateProduit/"+produit.getProduit_id();
+        String textUrl = "http://192.168.43.190:8080/Bouglangerie/webapi/produit/updateProduit/"+produit.getProduit_id();
         String methode = "POST";
 
         // Convertir produit java en Json
@@ -123,15 +119,15 @@ private class SendHttpRequestTaskOnUpdateProduit extends AsyncTask<String, Void,
 
         return result;
     }
-/*
+
     //la resultat de doInBackground est repris et afficher à la vue
     @Override
     protected void onPostExecute(String result) {
-        //Afficher message
+        //Afficher message de validation
         tv_message_modifier.setText(result);
-       // tv_message_modifier.setTextColor(Color.BLUE);
+       tv_message_modifier.setTextColor(Color.BLUE);
     }
-*/
+
 }
     // Methode pour connect au server
     public String  httpConnection(String textUrl, String methode, String json) throws Exception {
@@ -163,8 +159,9 @@ private class SendHttpRequestTaskOnUpdateProduit extends AsyncTask<String, Void,
             // prendre la response du server et mettre dans ce String
             responseServer = scanner.nextLine();
 
+            String result = "Ce produit est modifié";
 
-            return responseServer;
+            return result;
 
         } catch (Exception e) {
             Log.e("APPLICATION_BOULANGERIE", " On n'a pas trouve http server ", e);

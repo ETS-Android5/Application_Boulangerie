@@ -65,7 +65,7 @@ public class SupprimerProduit extends AppCompatActivity {
     }
 
     private void supprimer_produit(String id, TextView tv_information_delete) throws Exception {
-        String textUrl = "http://192.168.43.189:8080/Bouglangerie/webapi/produit/deleteProduit/"+id;
+        String textUrl = "http://192.168.43.190:8080/Bouglangerie/webapi/produit/deleteProduit/"+id;
         String methode = "DELETE";
 
         SendHttpRequestTask t = new SendHttpRequestTask();

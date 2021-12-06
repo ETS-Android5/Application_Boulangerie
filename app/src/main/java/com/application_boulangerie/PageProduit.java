@@ -135,7 +135,7 @@ public class PageProduit extends AppCompatActivity {
         tv_ingredient.setText("Ingredients: \n"+produit_description_ingredients);
 
         // Get connection to HTTP server throw Thread
-        String textUrl= "http://172.20.10.7:8080/Bouglangerie/webapi/produit/findbyIDProduit/"+id;
+        String textUrl= "http://192.168.43.190:8080/Bouglangerie/webapi/produit/findbyIDProduit/"+id;
         String methode = "GET";
 /*
        SendHttpRequestTask t = new SendHttpRequestTask();

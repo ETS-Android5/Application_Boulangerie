@@ -67,7 +67,7 @@
                 style="@style/DigitTxtStyleStyle"
                 android:text="@string/produit_nom" />
             <EditText
-                android:id="@+id/edt_produit_nom_cree"
+                android:id="@+id/edt_produit_nom_update"
                 style="@style/DigitTxtEditerStyleStyle"
                 android:layout_weight="1"
                 android:ems="10"
@@ -91,7 +91,7 @@
                 android:text="@string/produit_prix" />
 
             <EditText
-                android:id="@+id/edt_produit_prix_cree"
+                android:id="@+id/edt_produit_prix_update"
                 style="@style/DigitTxtEditerStyleStyle"
                 android:layout_weight="1"
                 android:ems="10"
@@ -113,7 +113,7 @@
                 android:text="@string/produit_quantite" />
 
             <EditText
-                android:id="@+id/edt_produit_quantite_cree"
+                android:id="@+id/edt_produit_quantite_update"
                 style="@style/DigitTxtEditerStyleStyle"
                 android:layout_weight="1"
                 android:ems="10"
@@ -136,7 +136,7 @@
                 style="@style/DigitTxtStyleStyle"
                 android:text="@string/produit_ingredient" />
             <EditText
-                android:id="@+id/edt_produit_ingredient_cree"
+                android:id="@+id/edt_produit_ingredient_update"
                 style="@style/DigitTxtEditerStyleStyle"
                 android:layout_weight="1"
                 android:ems="10"
