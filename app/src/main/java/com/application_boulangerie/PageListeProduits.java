@@ -199,26 +199,8 @@ public class PageListeProduits extends AppCompatActivity {
             // methode pour aller au PageProduit
             @Override
             public void onClick(View v) {
-                String produit_id = String.valueOf(produit.getProduit_id());
-                String produit_nom = produit.getProduit_nom();
-                String produit_prix = String.valueOf(produit.getProduit_prix());
-                String produit_quantite = String.valueOf(produit.getProduit_quantite());
-                String produit_description_ingredients = produit.getProduit_description_ingredients();
 
-                // On crée un Intent (Une intention)
-                Intent intent = new Intent(PageListeProduits.this, PageProduit.class);
-
-
-                intent.putExtra("produit_id", produit_id);
-                intent.putExtra("produit_nom", produit_nom);
-                intent.putExtra("produit_prix", produit_prix);
-                intent.putExtra("produit_quantite", produit_quantite);
-                intent.putExtra("produit_description_ingredients", produit_description_ingredients);
-
-                //  intent.putExtra("image_produit",imageProduit);
-
-                //lancer Intent
-                startActivity(intent);
+               AppelIntent.appelIntentAvecExtraPageProduit(PageListeProduits.this, PageProduit.class, produit);
             }
         });
 

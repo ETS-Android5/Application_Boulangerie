@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TableLayout;
 import android.widget.TextView;
 import com.application_boulangerie.data.Produit;
 import com.application_boulangerie.extrafonctions.AppelIntent;
@@ -33,10 +34,9 @@ import java.util.Scanner;
 
 public class PageProduit extends AppCompatActivity {
 
-    int id;
     TextView tv_id, tv_Produit, tv_ingredient,tv_prix, tv_quantite;
     ImageView imaProduit;
-    Produit produit ;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +45,7 @@ public class PageProduit extends AppCompatActivity {
         // Association view au java
         fct_associationViewAuJava();
 
-        fct_remplirLaVuePageProduit(tv_id, tv_Produit,tv_ingredient,tv_prix,tv_quantite);
+        fct_remplirLaVuePageProduit();
 
     }
 
@@ -95,19 +95,12 @@ public class PageProduit extends AppCompatActivity {
     }
 
     //Methode pour afficher la page PageProduit
-    public void fct_remplirLaVuePageProduit( TextView tv_id,
-                                            TextView tv_Produit,
-                                            TextView tv_ingredient,
-                                            TextView tv_prix,
-                                            TextView tv_quantite) {
+    public void fct_remplirLaVuePageProduit() {
 
         // methode try pour donner 1 exception s'il n'y a pas de Extra
         try {
             if (getIntent().hasExtra("produit_id") == false) {throw new Exception("Aucun Extra donne pour l('id)"); }
-            if (getIntent().hasExtra("produit_nom") == false) {throw new Exception("Aucun Extra donne pour la nom"); }
-            if (getIntent().hasExtra("produit_prix") == false) { throw new Exception("Aucun Extra donne pour le prix"); }
-            if (getIntent().hasExtra("produit_quantite") == false) { throw new Exception("Aucun Extra donne pour lq quantite"); }
-            if (getIntent().hasExtra("produit_description_ingredients") == false) { throw new Exception("Aucun Extra donne pour l'ingredient"); }
+
         } catch (Exception e) {
             // Appeller 1 toast
             AppelToast.displayCustomToast(this, "Erreur détectée lors du remplissage de la vue [" + e.toString() + "]");
@@ -119,31 +112,16 @@ public class PageProduit extends AppCompatActivity {
         String produit_id= getIntent().getStringExtra("produit_id");
         // Remettre this id to type Integer
         int id = Integer.parseInt(produit_id);
-        // mettre la text du TextView
-        tv_id.setText(produit_id);
-        // mettre nom du produit
-        String produit_nom = getIntent().getStringExtra("produit_nom");
-        tv_Produit.setText(produit_nom);
-        // mettre prix du produit
-        String produit_prix = getIntent().getStringExtra("produit_prix");
-        tv_prix.setText("Prix (€) : "+produit_prix);
-        // mettre quantite du produit
-        String produit_quantite = getIntent().getStringExtra("produit_quantite");
-        tv_quantite.setText("Quantite : "+produit_quantite);
-        // mettre list des ingredients  du produit
-        String produit_description_ingredients = getIntent().getStringExtra("produit_description_ingredients");
-        tv_ingredient.setText("Ingredients: \n"+produit_description_ingredients);
 
         // Get connection to HTTP server throw Thread
         String textUrl= "http://192.168.43.190:8080/Bouglangerie/webapi/produit/findbyIDProduit/"+id;
         String methode = "GET";
-/*
+
        SendHttpRequestTask t = new SendHttpRequestTask();
 
         String[] params = new String[]{textUrl, methode};
         t.execute(params);
 
-*/
         }
 
 
@@ -163,7 +141,6 @@ public class PageProduit extends AppCompatActivity {
                 result = httpConnection(url, methode);
             } catch (Exception e) {
                 e.printStackTrace();
-                Log.e("APP_BOULANGERIE", "error connect server "+ e.toString());
             }
 
             return result;
@@ -177,18 +154,29 @@ public class PageProduit extends AppCompatActivity {
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
             Produit produit = gson.fromJson(result,Produit.class);
-
-            tv_id.setText(produit.getProduit_id());
-            tv_Produit.setText(produit.getProduit_nom());
-            tv_prix.setText("Prix (€) : "+(int) produit.getProduit_prix());
-            tv_quantite.setText("Quantite : "+produit.getProduit_quantite());
-            tv_ingredient.setText("Ingredients: \n"+produit.getProduit_description_ingredients());
+            affichageDuPage(produit);
 
         }
 
     }
 
-    // Methode pour connect HTTP Server
+    public void affichageDuPage(Produit produit ){
+        String id = String.valueOf(produit.getProduit_id());
+        String nom = produit.getProduit_nom();
+        String prix = String.valueOf(produit.getProduit_prix());
+        String quantite = String.valueOf(produit.getProduit_quantite());
+        String ingredient = produit.getProduit_description_ingredients();
+
+        this.tv_id.setText(id);
+        this.tv_Produit.setText(nom);
+        this.tv_prix.setText("Prix (€) : "+prix);
+        this.tv_quantite.setText("Quantite : "+quantite);
+        this.tv_ingredient.setText("Ingredients: \n"+ingredient);
+
+    }
+
+
+        // Methode pour connect HTTP Server
     @RequiresApi(api = Build.VERSION_CODES.M)
     public String  httpConnection(String textUrl, String methode) throws Exception {
 

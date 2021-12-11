@@ -1,5 +1,6 @@
 package com.application_boulangerie;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
@@ -70,10 +71,10 @@ public class ModifierProduit extends AppCompatActivity {
         String ingredient = ajouteText(edt_produit_ingredient_update);
 
         // Creer nouveau produit avec les valeurs pris dans la vue
-        Produit produit = new Produit(id, nom, prix,quantite,ingredient);
+        this.produit = new Produit(id, nom, prix,quantite,ingredient);
 
         // mise a jour le produit dans le database
-        modifierProduit(produit, tv_message_modifier);
+        modifierProduit(this.produit, tv_message_modifier);
 
        // modifierProduit(produit);
 
@@ -186,7 +187,7 @@ private class SendHttpRequestTaskOnUpdateProduit extends AsyncTask<String, Void,
                                                            EditText edt_produit_prix_update,
                                                            EditText edt_produit_quantite_update,
                                                            EditText edt_produit_ingredient_update) {
-        /*try {
+        try {
             if (getIntent().hasExtra("produit_id") == false) {
                 throw new Exception("Aucun Extra donne pour l('id)");
             }
@@ -207,7 +208,7 @@ private class SendHttpRequestTaskOnUpdateProduit extends AsyncTask<String, Void,
             AppelToast.displayCustomToast(this, "Erreur détectée lors du remplissage de la vue [" + e.toString() + "]");
 
             getIntent().setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        }*/
+        }
 
         // mettre Nom du produit
         String produit_id= getIntent().getStringExtra("produit_id");
@@ -228,9 +229,23 @@ private class SendHttpRequestTaskOnUpdateProduit extends AsyncTask<String, Void,
         // mettre prix du produit
         String produit_description_ingredients = getIntent().getStringExtra("produit_description_ingredients");
         edt_produit_ingredient_update.setText(produit_description_ingredients);
+
+        int id = Integer.parseInt(produit_id);
+      //  String nom = produit_nom;
+        Double prix = Double.valueOf(produit_prix);
+        int quantite = Integer.valueOf(produit_quantite);
+       //String ingredient = produit_description_ingredients;
+
+        // Creer nouveau produit avec les valeurs pris dans la vue
+        this.produit = new Produit(id, produit_nom, prix,quantite,produit_description_ingredients);
     }
 
     public void act_retour_page_list_produit(View view) {
-        AppelIntent.appelIntentSimple(this,PageListeProduits.class);
+
+        AppelToast.displayCustomToast(this,"Retour a la page de produit");
+
+        AppelIntent.appelIntentAvecExtraPageProduit(this, PageProduit.class, this.produit);
+
+
     }
    }
