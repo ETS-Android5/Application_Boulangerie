@@ -1,10 +1,8 @@
 package com.application_boulangerie;
 
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
-import android.support.v4.widget.TextViewCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,21 +12,17 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 import com.application_boulangerie.data.Produit;
-import com.application_boulangerie.extrafonctions.AppelIntent;
-import com.application_boulangerie.extrafonctions.AppelToast;
+import com.application_boulangerie.utils.AppelIntent;
+import com.application_boulangerie.utils.AppelToast;
+import com.application_boulangerie.utils.MyHTTPConnection;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import java.io.BufferedInputStream;
-import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.lang.reflect.Type;
 import java.net.HttpURLConnection;
-import java.net.ProtocolException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -43,10 +37,11 @@ public class PageListeProduits extends AppCompatActivity {
         setContentView(R.layout.activity_page_liste_produits);
 
         // Association view au java
-        this.tl = findViewById(R.id.tl_list_produit);
+        this.tl = findViewById(R.id.tl_list_mp);
 
         // Get connection to HTTP server throw Thread
-        String textUrl= "http://192.168.43.190:8080/Bouglangerie/webapi/produit/getAllProduits";
+        //String textUrl= "http://192.168.43.190:8080/Bouglangerie/webapi/produit/getAllProduits";
+        String textUrl ="http://192.168.43.137:8080/gestion_boulangerie/webapi/produit/getAllProduits";
         String methode = "GET";
 
         SendHttpRequestTask t = new SendHttpRequestTask();
@@ -68,7 +63,7 @@ public class PageListeProduits extends AppCompatActivity {
 
             String result = null;
             try {
-                result = httpConnection(url, methode);
+                result = MyHTTPConnection.startHttpRequestGET(url);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -101,42 +96,6 @@ public class PageListeProduits extends AppCompatActivity {
 
         }
 
-
-
-    }
-
-    // Methode pour connect HTTP Server
-    @RequiresApi(api = Build.VERSION_CODES.M)
-    public String  httpConnection(String textUrl, String methode) throws Exception {
-
-                HttpURLConnection urlConnection = null;
-                try {
-                    // get connect to HTTP server
-                    URL url = new URL(textUrl);
-                    urlConnection= (HttpURLConnection) url.openConnection();
-                    urlConnection.setRequestMethod(methode);
-
-                    // Creer 1 valeur type InputSteam pour recuper la flux
-                    InputStream in = new BufferedInputStream( urlConnection.getInputStream());
-                    //Permet de  décortiquer à partir d'un flux d'un certain nombre de methode indiqué
-                    Scanner scanner = new Scanner(in);
-                    // Creer 1 chaine type String pour stocker la reponse du server
-                    String responseServer = null;
-
-                    // mettre la reponse du sever au ce String
-                    responseServer= scanner.nextLine();
-
-                    in.close();
-
-                    return responseServer;
-                }
-                catch (Exception e){
-                    Log.e("Exchange-JSON", " On n'a pas trouve http server ", e);
-
-                } finally {
-                    if(urlConnection != null) urlConnection.disconnect();
-                }
-            return null;
     }
 
     // Methode pour appeller au AjouterProduit activity quand on clic bouton ADD (+)
@@ -150,9 +109,9 @@ public class PageListeProduits extends AppCompatActivity {
     // Methode pour appeller MainActivity quand on clic boutton "retour"
     public void act_retour(View view) {
         // Appeller 1 toast pour information de ce button
-        AppelToast.displayCustomToast(this, "Retour au page d'acceuil");
+        AppelToast.displayCustomToast(this, "Retour au page MENU");
         // Apppler 1 simple intent  pour vers la page MainActivity
-        AppelIntent.appelIntentSimple(this,MainActivity.class);
+        AppelIntent.appelIntentSimple(this,Menu.class);
 
     }
 

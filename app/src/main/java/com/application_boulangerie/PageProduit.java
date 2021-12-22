@@ -13,22 +13,18 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.TableLayout;
 import android.widget.TextView;
 import com.application_boulangerie.data.Produit;
-import com.application_boulangerie.extrafonctions.AppelIntent;
-import com.application_boulangerie.extrafonctions.AppelToast;
+import com.application_boulangerie.utils.AppelIntent;
+import com.application_boulangerie.utils.AppelToast;
+import com.application_boulangerie.utils.MyHTTPConnection;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.reflect.TypeToken;
 
 import java.io.BufferedInputStream;
 import java.io.InputStream;
-import java.lang.reflect.Type;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.List;
-import java.util.Locale;
 import java.util.Scanner;
 
 
@@ -114,7 +110,8 @@ public class PageProduit extends AppCompatActivity {
         int id = Integer.parseInt(produit_id);
 
         // Get connection to HTTP server throw Thread
-        String textUrl= "http://192.168.43.190:8080/Bouglangerie/webapi/produit/findbyIDProduit/"+id;
+       // String textUrl= "http://192.168.43.190:8080/Bouglangerie/webapi/produit/findbyIDProduit/"+id;
+        String textUrl ="http://192.168.43.137:8080/gestion_boulangerie/webapi/produit/findbyIDProduit/"+id;
         String methode = "GET";
 
        SendHttpRequestTask t = new SendHttpRequestTask();
@@ -138,7 +135,7 @@ public class PageProduit extends AppCompatActivity {
 
             String result = null;
             try {
-                result = httpConnection(url, methode);
+                result = MyHTTPConnection.startHttpRequestGET(url);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -175,40 +172,6 @@ public class PageProduit extends AppCompatActivity {
 
     }
 
-
-        // Methode pour connect HTTP Server
-    @RequiresApi(api = Build.VERSION_CODES.M)
-    public String  httpConnection(String textUrl, String methode) throws Exception {
-
-        HttpURLConnection urlConnection = null;
-        try {
-            // get connect to HTTP server
-            URL url = new URL(textUrl);
-            urlConnection= (HttpURLConnection) url.openConnection();
-            urlConnection.setRequestMethod(methode);
-
-            // Creer 1 valeur type InputSteam pour recuper la flux
-            InputStream in = new BufferedInputStream( urlConnection.getInputStream());
-            //Permet de  décortiquer à partir d'un flux d'un certain nombre de methode indiqué
-            Scanner scanner = new Scanner(in);
-            // Creer 1 chaine type String pour stocker la reponse du server
-            String responseServer = null;
-
-            // mettre la reponse du sever au ce String
-            responseServer= scanner.nextLine();
-
-            in.close();
-
-            return responseServer;
-        }
-        catch (Exception e){
-            Log.e("Exchange-JSON", " On n'a pas trouve http server ", e);
-
-        } finally {
-            if(urlConnection != null) urlConnection.disconnect();
-        }
-        return null;
-    }
     // Methode pour aller au page Supprimer un produit quand on clic sur button
     public void act_suprimer_produit(View view) {
         // Afficher 1 dialog pour confirmer la supprimation

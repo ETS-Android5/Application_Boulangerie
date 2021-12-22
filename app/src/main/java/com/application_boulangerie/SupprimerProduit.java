@@ -2,28 +2,20 @@ package com.application_boulangerie;
 
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.os.Build;
-import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
-import com.application_boulangerie.data.Produit;
-import com.application_boulangerie.extrafonctions.AppelIntent;
-import com.application_boulangerie.extrafonctions.AppelToast;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.reflect.TypeToken;
+import com.application_boulangerie.utils.AppelIntent;
+import com.application_boulangerie.utils.AppelToast;
+import com.application_boulangerie.utils.MyHTTPConnection;
 
 import java.io.BufferedInputStream;
 import java.io.InputStream;
-import java.lang.reflect.Type;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class SupprimerProduit extends AppCompatActivity {
@@ -65,7 +57,9 @@ public class SupprimerProduit extends AppCompatActivity {
     }
 
     private void supprimer_produit(String id, TextView tv_information_delete) throws Exception {
-        String textUrl = "http://192.168.43.190:8080/Bouglangerie/webapi/produit/deleteProduit/"+id;
+        //String textUrl = "http://192.168.43.190:8080/Bouglangerie/webapi/produit/deleteProduit/"+id;
+        String textUrl ="http://192.168.43.137:8080/gestion_boulangerie/webapi/produit/deleteProduit/"+id;
+
         String methode = "DELETE";
 
         SendHttpRequestTask t = new SendHttpRequestTask();
@@ -87,7 +81,8 @@ public class SupprimerProduit extends AppCompatActivity {
 
             String data = null;
             try {
-                data = httpConnection(url, methode);
+                data = MyHTTPConnection.httpConnectionRequestDELETE(url, methode);
+                //data = httpConnection(url,methode);
             } catch (Exception e) {
                 e.printStackTrace();
             }

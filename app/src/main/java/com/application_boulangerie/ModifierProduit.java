@@ -5,22 +5,15 @@ import android.graphics.Color;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import com.application_boulangerie.data.Produit;
-import com.application_boulangerie.extrafonctions.AppelIntent;
-import com.application_boulangerie.extrafonctions.AppelToast;
+import com.application_boulangerie.utils.AppelIntent;
+import com.application_boulangerie.utils.AppelToast;
+import com.application_boulangerie.utils.MyHTTPConnection;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.util.Scanner;
 
 public class ModifierProduit extends AppCompatActivity {
 
@@ -76,13 +69,13 @@ public class ModifierProduit extends AppCompatActivity {
         // mise a jour le produit dans le database
         modifierProduit(this.produit, tv_message_modifier);
 
-       // modifierProduit(produit);
 
     }
 
     private void modifierProduit(Produit produit, TextView tv_message_modifier) {
 
-        String textUrl = "http://192.168.43.190:8080/Bouglangerie/webapi/produit/updateProduit/"+produit.getProduit_id();
+        //String textUrl = "http://192.168.43.190:8080/Bouglangerie/webapi/produit/updateProduit/"+produit.getProduit_id();
+        String textUrl ="http://192.168.43.137:8080/gestion_boulangerie/webapi/produit/updateProduit/"+produit.getProduit_id();
         String methode = "POST";
 
         // Convertir produit java en Json
@@ -112,7 +105,7 @@ private class SendHttpRequestTaskOnUpdateProduit extends AsyncTask<String, Void,
         String result = null;
 
         try {
-            result = httpConnection(url,methode, produit);
+            result = MyHTTPConnection.httpConnectionRequestPOST(url,methode, produit);
         } catch (Exception e) {
             e.printStackTrace();
             AppelToast.displayCustomToast(ModifierProduit.this, "Ne peut pas connect au server");
@@ -130,48 +123,6 @@ private class SendHttpRequestTaskOnUpdateProduit extends AsyncTask<String, Void,
     }
 
 }
-    // Methode pour connect au server
-    public String  httpConnection(String textUrl, String methode, String json) throws Exception {
-        // Get connection to HTTP server
-        HttpURLConnection urlConnection = null;
-        try {
-
-            // get connect to HTTP server
-            URL url = new URL(textUrl);
-            urlConnection = (HttpURLConnection) url.openConnection();
-            urlConnection.setRequestMethod(methode);
-            urlConnection.setDoOutput(true);
-            urlConnection.setRequestProperty("Content-Type", "application/json");
-
-            //écriture de texte dans un flux de sortie
-            OutputStream out = new BufferedOutputStream(urlConnection.getOutputStream());
-            out.write(json.getBytes());
-            out.close();
-            //The connection is opened implicitly by calling getInputStream.
-            urlConnection.getInputStream();
-
-            // Creer 1 valeur type InputSteam pour recuper la flux
-            InputStream in = new BufferedInputStream(urlConnection.getInputStream());
-            //Permet de  décortiquer à partir d'un flux d'un certain nombre de methode indiqué
-            Scanner scanner = new Scanner(in);
-            // Creer 1 chaine type String pour stocker la reponse du server
-            String responseServer = null;
-
-            // prendre la response du server et mettre dans ce String
-            responseServer = scanner.nextLine();
-
-            String result = "Ce produit est modifié";
-
-            return result;
-
-        } catch (Exception e) {
-            Log.e("APPLICATION_BOULANGERIE", " On n'a pas trouve http server ", e);
-
-        } finally {
-            if (urlConnection != null) urlConnection.disconnect();
-        }
-        return null;
-    }
 
 
    public static String ajouteText(EditText edT) {
@@ -240,7 +191,7 @@ private class SendHttpRequestTaskOnUpdateProduit extends AsyncTask<String, Void,
         this.produit = new Produit(id, produit_nom, prix,quantite,produit_description_ingredients);
     }
 
-    public void act_retour_page_list_produit(View view) {
+    public void act_retour_page_produit(View view) {
 
         AppelToast.displayCustomToast(this,"Retour a la page de produit");
 
