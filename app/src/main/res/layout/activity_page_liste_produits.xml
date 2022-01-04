@@ -23,7 +23,7 @@
         tools:ignore="ImageContrastCheck,ImageContrastCheck" />
 
     <ImageButton
-        android:id="@+id/ib_retour"
+        android:id="@+id/ib_retour_a_la_page_menu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -39,7 +39,7 @@
         tools:ignore="SpeakableTextPresentCheck" />
 
     <ImageButton
-        android:id="@+id/ib_ajouterProduit"
+        android:id="@+id/ib_ajouterMP"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
@@ -61,38 +61,40 @@
         android:layout_marginTop="100dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintVertical_bias="1.0">
 
         <TableLayout
-            android:id="@+id/tl_list_produit"
+            android:id="@+id/tl_list_mp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="10dp"
-            android:textAlignment = "center"
-            >
+            android:paddingRight="10dp"
+            android:textAlignment="center"
+            android:stretchColumns="1"
+            android:shrinkColumns="1">
 
             <TableRow>
 
                 <TextView
-                    android:id="@+id/tv_produitID"
+                    android:id="@+id/tv_mpID"
                     style="@style/DigitTxtTableTitreStyle"
                     android:text="@string/produit_id" />
 
                 <TextView
-                    android:id="@+id/tv_produitNom"
+                    android:id="@+id/tv_mpNom"
                     style="@style/DigitTxtTableTitreStyle"
                     android:text="@string/produit_nom" />
 
                 <TextView
-                    android:id="@+id/tv_produitPrix"
+                    android:id="@+id/tv_mpPrix"
                     style="@style/DigitTxtTableTitreStyle"
                     android:text="@string/produit_prix" />
 
                 <TextView
-                    android:id="@+id/tv_produitQuantite"
+                    android:id="@+id/tv_mpQuantite"
                     style="@style/DigitTxtTableTitreStyle"
                     android:text="@string/produit_quantite" />
 

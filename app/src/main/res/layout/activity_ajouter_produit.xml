@@ -7,7 +7,7 @@
     tools:context=".AjouterProduit">
 
     <ImageView
-        android:id="@+id/ima_page_ajouter_produit"
+        android:id="@+id/ima_page_modifier_produit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:scaleType="centerCrop"
@@ -21,13 +21,13 @@
         android:id="@+id/b_valide_ajouter_produit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="50dp"
-        android:layout_marginStart="100dp"
+        android:layout_marginStart="120dp"
+        android:layout_marginTop="400dp"
         android:background="@drawable/group_valide"
         android:onClick="act_valide_ajouter_produit"
         android:radius="100dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <ImageButton
@@ -48,8 +48,9 @@
 
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:id="@+id/linearLayout_ajouterProduit"
+        android:layout_width="414dp"
+        android:layout_height="218dp"
         android:layout_marginTop="100dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
@@ -63,19 +64,20 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/tv_produit_nom_update"
-                style="@style/DigitTxtStyleStyle"
+                android:id="@+id/tv_produit_nom_ajouter"
+                style="@style/DigitTxtStyle120"
                 android:text="@string/produit_nom" />
+
             <EditText
-                android:id="@+id/edt_produit_nom_update"
+                android:id="@+id/edt_produit_nom_ajouter"
                 style="@style/DigitTxtEditerStyleStyle"
                 android:layout_weight="1"
                 android:ems="10"
                 android:hint="@string/produit_nom"
+                android:importantForAutofill="no"
                 android:inputType="textPersonName"
-                android:minHeight="48dp" />
-
-
+                android:minHeight="48dp"
+                tools:ignore="DuplicateSpeakableTextCheck,TextContrastCheck" />
 
 
         </LinearLayout>
@@ -86,18 +88,20 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/tv_produit_prix_update"
-                style="@style/DigitTxtStyleStyle"
-                android:text="@string/produit_prix" />
+                android:id="@+id/tv_produit_prix_ajouter"
+                style="@style/DigitTxtStyle120"
+                android:text="@string/prix_avec_euros" />
 
             <EditText
-                android:id="@+id/edt_produit_prix_update"
+                android:id="@+id/edt_produit_prix_ajouter"
                 style="@style/DigitTxtEditerStyleStyle"
                 android:layout_weight="1"
                 android:ems="10"
                 android:hint="@string/produit_prix"
+                android:importantForAutofill="no"
                 android:inputType="number|numberDecimal"
-                android:minHeight="48dp" />
+                android:minHeight="48dp"
+                tools:ignore="DuplicateSpeakableTextCheck,TextContrastCheck" />
 
 
         </LinearLayout>
@@ -108,20 +112,20 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/tv_produit_quantite_update"
-                style="@style/DigitTxtStyleStyle"
+                android:id="@+id/tv_produit_quantite_ajouter"
+                style="@style/DigitTxtStyle120"
                 android:text="@string/produit_quantite" />
 
             <EditText
-                android:id="@+id/edt_produit_quantite_update"
+                android:id="@+id/edt_produit_quantite_ajouter"
                 style="@style/DigitTxtEditerStyleStyle"
                 android:layout_weight="1"
                 android:ems="10"
                 android:hint="@string/produit_quantite"
+                android:importantForAutofill="no"
                 android:inputType="number"
-                android:minHeight="48dp" />
-
-
+                android:minHeight="48dp"
+                tools:ignore="DuplicateSpeakableTextCheck,TextContrastCheck" />
 
 
         </LinearLayout>
@@ -132,24 +136,34 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/tv_produit_ingredient_update"
-                style="@style/DigitTxtStyleStyle"
-                android:text="@string/produit_ingredient" />
+                android:id="@+id/tv_produit_categorie_ajouter"
+                style="@style/DigitTxtStyle120"
+                android:text="@string/produit_categorie_ID" />
+
             <EditText
-                android:id="@+id/edt_produit_ingredient_update"
+                android:id="@+id/edt_produit_categorie_ajouter"
                 style="@style/DigitTxtEditerStyleStyle"
+                android:layout_width="210dp"
                 android:layout_weight="1"
                 android:ems="10"
-                android:hint="@string/produit_ingredient"
-                android:inputType="textMultiLine"
-                android:minHeight="48dp" />
+                android:hint="@string/produit_categorie_ID"
+                android:importantForAutofill="no"
+                android:inputType="number"
+                android:minHeight="48dp"
+                tools:ignore="DuplicateSpeakableTextCheck,TextContrastCheck" />
 
-
+            <Button
+                android:id="@+id/bt_aide"
+                android:layout_width="43dp"
+                android:layout_height="41dp"
+                android:background="@android:drawable/ic_menu_help"
+                android:backgroundTint="@color/brown_fonce"
+                android:onClick="act_affichage_aide_listCategorie"
+                android:textColor="@color/rose_pastel"
+                tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
 
         </LinearLayout>
-
-
     </LinearLayout>
 
     <TextView

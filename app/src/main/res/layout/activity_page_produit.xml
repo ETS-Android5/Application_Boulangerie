@@ -10,8 +10,8 @@
         android:id="@+id/ib_supprimer_produit"
         android:layout_width="185dp"
         android:layout_height="73dp"
-        android:layout_marginBottom="30dp"
         android:layout_marginEnd="16dp"
+        android:layout_marginBottom="30dp"
         android:background="@drawable/group_supprimer"
         android:contentDescription="@string/image_du_button_supprimer"
         android:onClick="act_suprimer_produit"
@@ -25,23 +25,24 @@
         android:id="@+id/ib_modifier"
         android:layout_width="185dp"
         android:layout_height="73dp"
-        android:layout_marginBottom="30dp"
         android:layout_marginStart="16dp"
+        android:layout_marginBottom="30dp"
         android:background="@drawable/group_modifier"
         android:contentDescription="@string/image_du_button_modifier"
         android:onClick="act_modifier_produit"
         app:layout_constraintBottom_toBottomOf="parent"
 
         app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="SpeakableTextPresentCheck" />
+        tools:ignore="SpeakableTextPresentCheck,RedundantDescriptionCheck" />
 
     <ImageButton
         android:id="@+id/ib_fermer_page_produit"
         android:layout_width="48dp"
         android:layout_height="49dp"
-        android:layout_marginEnd="10dp"
         android:layout_marginTop="38dp"
+        android:layout_marginEnd="10dp"
         android:backgroundTint="@color/brown_fonce"
+        android:contentDescription="@string/image_du_fermer_page_produit"
         android:onClick="act_retour_list_produits"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -59,16 +60,16 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/page_produit" />
 
     <ImageView
         android:id="@+id/imaProduit"
         android:layout_width="174dp"
         android:layout_height="313dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="90dp"
         android:layout_marginEnd="196dp"
-        android:layout_marginStart="27dp"
-        android:layout_marginTop="80dp"
         android:contentDescription="@string/image_du_produit"
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
@@ -82,8 +83,8 @@
         android:id="@+id/tv_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
-        android:textColor="@color/rose_pastel"
+        android:text="@string/produit_id"
+        android:textColor="#F4511E"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -92,9 +93,9 @@
         android:id="@+id/tv_Produit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="644dp"
         android:layout_marginStart="15dp"
         android:layout_marginTop="100dp"
+        android:layout_marginBottom="644dp"
         android:fontFamily="sans-serif-black"
         android:includeFontPadding="false"
         android:text="@string/produit_nom"
@@ -106,51 +107,71 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/tv_ingredient"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="230dp"
-        android:layout_marginTop="100dp"
-        android:text="@string/produit_ingredient"
-        android:textColor="@color/brown_fonce"
-        android:textSize="18sp"
+    <ScrollView
+        android:layout_width="179dp"
+        android:layout_height="280dp"
+        android:layout_marginStart="205dp"
+        android:layout_marginTop="125dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.454"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tv_ingredient"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/produit_ingredient"
+            android:textColor="@color/brown_fonce"
+            android:textSize="18sp" />
+    </ScrollView>
 
     <TextView
         android:id="@+id/tv_prix"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="133dp"
+        android:layout_height="48dp"
         android:layout_marginStart="230dp"
-        android:layout_marginTop="424dp"
-        android:background="@drawable/carr_prix"
+        android:layout_marginTop="428dp"
         android:padding="10dp"
         android:text="@string/produit_prix"
         android:textAlignment="center"
-        android:textColor="#FFFFFF"
-        android:textSize="25sp"
+        android:textColor="@color/brown_organe"
+        android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.02"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tv_quantite"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="140dp"
+        android:layout_height="49dp"
         android:layout_marginStart="45dp"
-        android:layout_marginTop="424dp"
-        android:background="@drawable/carr_quantite"
+        android:layout_marginTop="430dp"
         android:padding="10dp"
         android:text="@string/produit_quantite"
         android:textAlignment="center"
-        android:textColor="#FFFFFF"
-        android:textSize="25sp"
+        android:textColor="@color/brown_fonce"
+        android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/bt_ajouter_ingredient"
+        android:layout_width="167dp"
+        android:layout_height="38dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="480dp"
+        android:background="@drawable/boutton_ajouter_ingredient"
+        android:onClick="act_ajouter_ingredient"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
 
 </android.support.constraint.ConstraintLayout>
