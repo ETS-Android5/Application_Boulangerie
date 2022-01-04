@@ -17,6 +17,7 @@ public class Ingredient  implements Serializable {
 				+ ingredient_quantite + ingredient_unite + "]";
 	}
 
+	// Contructeur avec 5 paramettres qui compris ingredient_id
 	public Ingredient(int ingredient_id, int produit_id, int mp_id, int ingredient_quantite, String ingredient_unite) {
 		this.ingredient_id = ingredient_id;
 		this.produit_id = produit_id;
@@ -25,6 +26,7 @@ public class Ingredient  implements Serializable {
 		this.ingredient_unite = ingredient_unite;
 	}
 
+	// Contructeur avec 4 paramettres qui n'a pas d'ingredient_id
 	public Ingredient(int produit_id, int mp_id, int ingredient_quantite, String ingredient_unite) {
 		this.produit_id = produit_id;
 		this.mp_id = mp_id;
@@ -58,17 +60,13 @@ public class Ingredient  implements Serializable {
 		return ingredient_quantite;
 	}
 
-	public void setIngredient_quantite(int ingredient_quantite) {
-		this.ingredient_quantite = ingredient_quantite;
-	}
+	public void setIngredient_quantite(int ingredient_quantite) {this.ingredient_quantite = ingredient_quantite; }
 
 	public String getIngredient_unite() {
 		return ingredient_unite;
 	}
 
-	public void setIngredient_unite(String ingredient_unite) {
-		this.ingredient_unite = ingredient_unite;
-	}
+	public void setIngredient_unite(String ingredient_unite) { this.ingredient_unite = ingredient_unite; }
 
 
 }

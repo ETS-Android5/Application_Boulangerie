@@ -7,11 +7,6 @@ public class Utilisateur  implements Serializable{
 	private int user_id;
 	private String user_nom, user_password;
 
-	// initialisation constructeur
-	public Utilisateur() {
-		this.user_nom = "inconnue";
-		this.user_password = "inconnue";
-	}
 	
 	//Constructor avec 2 parametres
 	public Utilisateur(String user_nom, String user_password) {

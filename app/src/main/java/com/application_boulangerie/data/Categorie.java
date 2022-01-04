@@ -11,19 +11,21 @@ public class Categorie  implements Serializable{
 
 	private List<Produit> produits = new ArrayList<>();
 
-
-	// initialisation constructeur
-	public Categorie() {
-		this.categorie_nom = "inconnue";
-	}
 	//Constructor avec 1 parametres
 	public Categorie( String categorie_nom) {
 		this.categorie_nom = categorie_nom;
 	}
+
+	//Constructor avec 2 parametres qui compris categorie_id
+	public Categorie( int categorie_id, String categorie_nom) {
+		this.categorie_id = categorie_id;
+		this.categorie_nom = categorie_nom;
+	}
 	@Override
 	public String toString() {
-		return "Categorie id =" + categorie_id + ":  [" + categorie_nom + "]";
+		return "Categorie id " + categorie_id + " : " + categorie_nom.toUpperCase() + "";
 	}
+	// getter et setter
 	public String getCategorie_nom() {
 		return categorie_nom;
 	}

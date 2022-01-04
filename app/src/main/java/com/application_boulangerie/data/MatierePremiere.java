@@ -13,18 +13,8 @@ public class MatierePremiere  implements Serializable{
 	private String mp_marque;
 
 		 private List<Produit> listeProduits;
-	
-	
-	// initialisation constructeur
-	public MatierePremiere() {
-		this.mp_nom = "inconnue";
-		this.mp_prix= 0.0;
-		this.mp_quantite = 0;
-		this.mp_unite = "inconnue";
-		this.mp_marque = "inconnue";
-	}
 
-	
+
 	@Override
 	public String toString() {
 		return "MatierePremiere [mp_id=" + mp_id + ", mp_nom=" + mp_nom + ", mp_prix=" + mp_prix + ", mp_quantite="
@@ -42,7 +32,6 @@ public class MatierePremiere  implements Serializable{
 
 	//Constructor avec 5 parametres
 	public MatierePremiere(String mp_nom, Double mp_prix, int mp_quantite, String mp_unite, String mp_marque) {
-		super();
 		this.mp_nom = mp_nom;
 		this.mp_prix = mp_prix;
 		this.mp_quantite = mp_quantite;

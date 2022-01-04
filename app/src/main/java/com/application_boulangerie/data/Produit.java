@@ -13,14 +13,6 @@ public class Produit implements Serializable{
 
 		private List<MatierePremiere> listeMPs;
 		private Categorie produitCategorie;
-	
-	// initialisation constructeur
-	public Produit() {
-		this.produit_nom = "inconnue";
-		this.produit_prix = 0.0;
-		this.produit_quantite = 0;
-		
-	}
 
 	//Constructor avec 3 parametres
 	public Produit(String produit_nom, double produit_prix, int produit_quantite) {
@@ -28,30 +20,20 @@ public class Produit implements Serializable{
 		this.produit_prix = produit_prix;
 		this.produit_quantite = produit_quantite;
 	}
-	
-	
-	//Constructor avec 4 parametres
-	public Produit(String produit_nom, double produit_prix, int produit_quantite,
-		 Categorie produitCategorie) {
-		this.produit_nom = produit_nom;
-		this.produit_prix = produit_prix;
-		this.produit_quantite = produit_quantite;
-		this.produitCategorie = produitCategorie;
-	}
 
-	//Constructor avec 5 parametres
+
+	//Constructor avec 4 parametres
 	public Produit(int produit_id, String produit_nom, double produit_prix, int produit_quantite) {
 		this.produit_id = produit_id;
 		this.produit_nom = produit_nom;
 		this.produit_prix = produit_prix;
 		this.produit_quantite = produit_quantite;
-		this.produitCategorie = produitCategorie;
 	}
 
 	@Override
 	public String toString() {
 		return "Produit [produit_id=" + produit_id + ", produit_nom=" + produit_nom + ", produit_prix=" + produit_prix
-				+ ", produit_quantite=" + produit_quantite + "categorie = "+produitCategorie+"]";
+				+ ", produit_quantite=" + produit_quantite +"]";
 	}
 
 	public String 	getProduit_nom() 							{return produit_nom;}
