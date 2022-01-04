@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PageListIngredient">
+
+
+    <ImageView
+        android:id="@+id/im_page_list_ingredient"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/page_lists_ingredient"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/page_list_ingredient"
+        tools:ignore="ImageContrastCheck,ImageContrastCheck" />
+
+    <ImageButton
+        android:id="@+id/ib_retour_a_la_page_modifier_produit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="50dp"
+        android:backgroundTint="@color/brown_fonce"
+        android:onClick="act_retour_a_la_pageProduit"
+        android:radius="100dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/ic_menu_revert"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <TextView
+        android:id="@+id/tv_id_ingredient"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/produit_id"
+        android:textColor="#F4511E"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="130dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <TableLayout
+            android:id="@+id/tl_list_ingredients"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="4dp"
+            android:shrinkColumns="1"
+            android:stretchColumns="1"
+            android:textAlignment="center">
+
+            <TableRow>
+
+                <TextView
+                    android:id="@+id/tv_ingredient_mpID"
+                    style="@style/DigitTxtTableTitreStyle_MP"
+                    android:text="@string/produit_id" />
+
+                <TextView
+                    android:id="@+id/tv_ingredient_mpNom"
+                    style="@style/DigitTxtTableTitreStyle_MP"
+                    android:text="@string/matiere_premiere" />
+
+
+                <TextView
+                    android:id="@+id/tv_ingredient_quantite"
+                    style="@style/DigitTxtTableTitreStyle_MP"
+                    android:text="@string/produit_quantite" />
+
+                <TextView
+                    android:id="@+id/tv_ingredient_Unite"
+                    style="@style/DigitTxtTableTitreStyle_MP"
+                    android:text="@string/mot_unite" />
+
+                <TextView
+                    android:id="@+id/tv_ingredientSelectModifier"
+                    style="@style/DigitTxtTableTitreStyle_MP"
+                    android:text="@string/modifier" />
+
+            </TableRow>
+
+        </TableLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/bt_aide_modifier"
+        android:layout_width="43dp"
+        android:layout_height="41dp"
+        android:layout_marginStart="313dp"
+        android:layout_marginTop="52dp"
+        android:background="@android:drawable/ic_menu_help"
+        android:backgroundTint="@color/brown_fonce"
+        android:onClick="act_aide_affichage_listMP"
+        android:textColor="@color/rose_pastel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.709"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+</android.support.constraint.ConstraintLayout>

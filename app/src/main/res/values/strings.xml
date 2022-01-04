@@ -2,10 +2,8 @@
     <string name="app_name">Application_Boulangerie</string>
     <string name="produit_id">Id</string>
     <string name="produit_nom">Produit</string>
-    <string name="produit_prix">Prix</string>
-    <string name="produit_quantite">Quantite</string>
     <string name="produit_ingredient">Ingredients</string>
-    <string name="produit_categorie">Categorie</string>
+    <string name="produit_categorie">Categorie </string>
     <string name="page_lists_produit">page_lists_produit</string>
     <string name="information_delete">Supprimer ce produit?!</string>
     <string name="fermer_page">Fermer</string>
@@ -19,5 +17,40 @@
     <string name="button_commencer">button_commencer</string>
     <string name="image_page_acceuil">image page acceuil</string>
     <string name="afficher">Afficher</string>
+    <string name="image_du_fermer_page_produit">image du fermeration page produit</string>
+    <string name="mot_unite">Unité</string>
+    <string name="image_du_page_mp">image du page matiere premiere</string>
+    <string name="mp_nom">Matiere Premiere</string>
+    <string name="prix_de_la_matiere_premiere">Prix de la Matiere Premiere</string>
+    <string name="quantite_de_la_matiere_premiere">Quantite de la Matiere Premiere</string>
+    <string name="nom_de_la_matiere_premiere">Nom de la Matiere Premiere</string>
+    <string name="unite_de_la_Matiere_Premiere">Unité de la Matiere Premiere</string>
+    <string name="produit_marque">Marque</string>
+    <string name="marque_de_la_Matiere_Premiere">Marque de la Matiere Premiere</string>
+    <string name="nom_mp">Nom MP </string>
+    <string name="image_du_fermer_page_mp">image du fermeture de la page MP</string>
+    <string name="produit_prix">Prix</string>
+    <string name="produit_quantite">Quantité</string>
+    <string name="information_de_mp">Information de la Matiere Premiere</string>
+    <string name="produit_categorie_ID">Categorie ID</string>
+    <string name="mot_aide">Aide</string>
+    <string name="prix_avec_euros">Prix (€)</string>
+    <string name="phase_ajouter_ingredient">Ajouter ingredient</string>
+    <string name="information_de_categorie">Information de la categorie</string>
+    <string name="page_lists_ingredient">image du page liste des ingredients</string>
+    <string name="matiere_premiere">MP</string>
+    <string name="image_du_page_ingredient">image du page ingredient</string>
+    <string name="information_de_ingredient">Information d\'ingredient</string>
+    <string name="phase_ingredient_id">ID de l\'ingredient</string>
+    <string name="phase_Mp_id">ID de la Matiere Premiere</string>
+    <string name="phase_ingredient_unite">Unité de l\'ingredient</string>
+    <string name="phase_ingredient_produit_id">Id du produit</string>
+    <string name="mot_textview">TextView</string>
+    <string name="phase_entrer_votre_mot_de_pass">Entrer votre mot de pass</string>
+    <string name="phase_mot_de_pass">Mot de pass</string>
+    <string name="phase_entrer_votre_utilisateur">Entrer votre utilisateur</string>
+    <string name="mot_utilisateur">Utilisateur</string>
+    <string name="mot_connexion">Connexion</string>
+
 
 </resources>

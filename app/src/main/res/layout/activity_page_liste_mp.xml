@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PageListeMP">
+
+
+    <ImageView
+        android:id="@+id/im_page_list_produit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/page_lists_produit"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/page_list_mp"
+        tools:ignore="ImageContrastCheck,ImageContrastCheck" />
+
+    <ImageButton
+        android:id="@+id/ib_retour_a_la_page_menu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="50dp"
+        android:backgroundTint="@color/brown_fonce"
+        android:onClick="act_retour_a_la_page_menu"
+        android:radius="100dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/ic_menu_revert"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <ImageButton
+        android:id="@+id/ib_ajouterMP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="340dp"
+        android:layout_marginTop="50dp"
+        android:backgroundTint="@color/brown_fonce"
+        android:onClick="act_ajouter_mp"
+        android:radius="100dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/ic_input_add"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="100dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <TableLayout
+            android:id="@+id/tl_list_mp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="4dp"
+            android:textAlignment = "center"
+            android:stretchColumns="1"
+            android:shrinkColumns="1"
+            >
+
+            <TableRow>
+
+                <TextView
+                    android:id="@+id/tv_mpID"
+                    style="@style/DigitTxtTableTitreStyle_MP"
+                    android:text="@string/produit_id" />
+
+                <TextView
+                    android:id="@+id/tv_mpNom"
+                    style="@style/DigitTxtTableTitreStyle_MP"
+                    android:text="@string/produit_nom" />
+
+                <TextView
+                    android:id="@+id/tv_mpPrix"
+                    style="@style/DigitTxtTableTitreStyle_MP"
+                    android:text="@string/produit_prix" />
+
+                <TextView
+                    android:id="@+id/tv_mpQuantite"
+                    style="@style/DigitTxtTableTitreStyle_MP"
+                    android:text="@string/produit_quantite" />
+
+                <TextView
+                    android:id="@+id/tv_mpUnite"
+                    style="@style/DigitTxtTableTitreStyle_MP"
+                    android:text="@string/mot_unite" />
+
+                <TextView
+                    android:id="@+id/tv_produitSelectModifier"
+                    style="@style/DigitTxtTableTitreStyle_MP"
+                    android:text="@string/afficher" />
+
+            </TableRow>
+
+        </TableLayout>
+    </ScrollView>
+
+</android.support.constraint.ConstraintLayout>

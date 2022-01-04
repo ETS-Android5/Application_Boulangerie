@@ -10,6 +10,27 @@
         <entry key="..\:/Workspace2/projetDoranco/workspace_client/app/src/main/res/layout/activity_page_liste_produits.xml" value="0.14" />
         <entry key="..\:/Workspace2/projetDoranco/workspace_client/app/src/main/res/layout/activity_page_produit.xml" value="0.22" />
         <entry key="..\:/Workspace2/projetDoranco/workspace_client/app/src/main/res/layout/activity_supprimer_produit.xml" value="0.33" />
+        <entry key="app/src/main/res/drawable-xxxhdpi/cell_shape_color_yellow.xml" value="0.185546875" />
+        <entry key="app/src/main/res/drawable/cell_shape_color_brown.xml" value="0.16770833333333332" />
+        <entry key="app/src/main/res/layout-land/activity_page_liste_mp.xml" value="0.1283068783068783" />
+        <entry key="app/src/main/res/layout/activity_ajouter_produit.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.19746376811594202" />
+        <entry key="app/src/main/res/layout/activity_menu.xml" value="0.125" />
+        <entry key="app/src/main/res/layout/activity_modifier_mp.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/activity_modifier_produit.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_page_categorie.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/activity_page_ingredient.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_page_list_ingredient.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_page_liste_mp.xml" value="0.19746376811594202" />
+        <entry key="app/src/main/res/layout/activity_page_liste_produits.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/activity_page_matiere_premiere.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_page_produit.xml" value="0.375" />
+        <entry key="app/src/main/res/layout/activity_supprimer_produit.xml" value="0.19746376811594202" />
+        <entry key="app/src/main/res/layout/custome.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/customer_list_view_layout.xml" value="0.1515625" />
+        <entry key="app/src/main/res/layout/layout_custom_dialog.xml" value="0.1734375" />
+        <entry key="app/src/main/res/layout/layout_custom_list_item.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/list_item_layout.xml" value="0.25" />
       </map>
     </option>
   </component>

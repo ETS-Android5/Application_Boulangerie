@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PageCategorie">
+
+    <ImageView
+        android:id="@+id/im_page_categorie"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/image_du_page_produit"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/page_categorie" />
+
+    <TextView
+        android:id="@+id/tv_message_page_categorie"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="75dp"
+        android:text="@string/information_de_categorie"
+        android:textColor="@color/brown_organe"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/ib_fermer_page_categorie"
+        android:layout_width="48dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="10dp"
+        android:backgroundTint="@color/brown_fonce"
+        android:onClick="act_retour_menu"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/ic_menu_close_clear_cancel"
+        tools:ignore="SpeakableTextPresentCheck"
+        android:contentDescription="TODO" />
+
+    <LinearLayout
+        android:layout_width="415dp"
+        android:layout_height="84dp"
+        android:layout_marginTop="120dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tv_categorie_nom"
+            style="@style/DigitTxtStyle20"
+            android:layout_weight="1"
+            android:text="@string/produit_categorie"
+            tools:ignore="TextContrastCheck" />
+
+        <EditText
+            android:id="@+id/edt_categorie_nom"
+            style="@style/DigitTxtEditerStyleStyle"
+            android:layout_weight="1"
+            android:hint="@string/produit_categorie"
+            android:inputType="textPersonName"
+            android:singleLine="true"
+            tools:ignore="DuplicateSpeakableTextCheck,TextContrastCheck" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_id_categorie"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/produit_id"
+        android:textColor="#F4511E"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/bt_ajouter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="113dp"
+        android:layout_marginTop="266dp"
+        android:layout_marginEnd="114dp"
+        android:background="@drawable/bouton_ajouter"
+        android:onClick="act_ajouter_categorie"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="SpeakableTextPresentCheck" />
+    <Button
+        android:id="@+id/ib_supprimer_categorie"
+        android:layout_width="185dp"
+        android:layout_height="73dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/group_supprimer"
+        android:contentDescription="@string/image_du_button_supprimer"
+        android:onClick="act_suprimer_categorie"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:ignore="SpeakableTextPresentCheck,RedundantDescriptionCheck" />
+
+
+    <Button
+        android:id="@+id/ib_modifier_categorie"
+        android:layout_width="185dp"
+        android:layout_height="73dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/group_modifier"
+        android:contentDescription="@string/image_du_button_modifier"
+        android:onClick="act_modifier_categorie"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="SpeakableTextPresentCheck,RedundantDescriptionCheck" />
+
+</android.support.constraint.ConstraintLayout>
