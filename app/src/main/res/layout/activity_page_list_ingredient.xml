@@ -43,10 +43,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/produit_id"
-        android:textColor="#F4511E"
+        android:textColor="@color/rose_pastel"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="TextContrastCheck" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -63,9 +64,9 @@
             android:id="@+id/tl_list_ingredients"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingLeft="4dp"
+            android:padding="4dp"
             android:shrinkColumns="1"
-            android:stretchColumns="1"
+            android:stretchColumns="*"
             android:textAlignment="center">
 
             <TableRow>
@@ -78,7 +79,7 @@
                 <TextView
                     android:id="@+id/tv_ingredient_mpNom"
                     style="@style/DigitTxtTableTitreStyle_MP"
-                    android:text="@string/matiere_premiere" />
+                    android:text="@string/phase_mp_nom_id" />
 
 
                 <TextView

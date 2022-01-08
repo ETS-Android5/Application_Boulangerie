@@ -22,21 +22,22 @@
         app:srcCompat="@drawable/page_menu"
         tools:ignore="ImageContrastCheck,ImageContrastCheck" />
 
-    <ImageButton
+    <Button
         android:id="@+id/ib_retour_page_acceuil"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="11dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="350dp"
         android:layout_marginTop="15dp"
+        android:background="@drawable/kisspng_start_svg_png_icon_free_download_501746_onlin_5b6a8876ad34f1_8833342315337084067095"
         android:backgroundTint="@color/brown_fonce"
         android:onClick="act_retour_page_acceuil"
         android:radius="100dp"
+        android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:drawable/ic_menu_revert"
-        tools:ignore="SpeakableTextPresentCheck" />
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <Button
         android:id="@+id/bt_listeProduits"

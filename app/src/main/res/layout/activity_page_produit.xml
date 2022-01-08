@@ -84,10 +84,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/produit_id"
-        android:textColor="#F4511E"
+        android:textColor="@color/rose_pastel"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="TextContrastCheck" />
 
     <TextView
         android:id="@+id/tv_Produit"
@@ -129,9 +130,9 @@
 
     <TextView
         android:id="@+id/tv_prix"
-        android:layout_width="133dp"
+        android:layout_width="wrap_content"
         android:layout_height="48dp"
-        android:layout_marginStart="230dp"
+        android:layout_marginStart="220dp"
         android:layout_marginTop="428dp"
         android:padding="10dp"
         android:text="@string/produit_prix"
@@ -146,9 +147,9 @@
 
     <TextView
         android:id="@+id/tv_quantite"
-        android:layout_width="140dp"
+        android:layout_width="wrap_content"
         android:layout_height="49dp"
-        android:layout_marginStart="45dp"
+        android:layout_marginStart="30dp"
         android:layout_marginTop="430dp"
         android:padding="10dp"
         android:text="@string/produit_quantite"
