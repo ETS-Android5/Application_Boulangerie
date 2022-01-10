@@ -1,6 +1,5 @@
 package com.application_boulangerie;
 
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,14 +8,9 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.application_boulangerie.utils.AppelIntent;
-import com.application_boulangerie.utils.AppelToast;
 import com.application_boulangerie.utils.MyHTTPConnection;
-
-import java.io.BufferedInputStream;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.util.Scanner;
+import com.application_boulangerie.utils.MyURL;
+import com.application_boulangerie.utils.NameExtra;
 
 public class SupprimerProduit extends AppCompatActivity {
    TextView tv_information_delete;
@@ -27,62 +21,88 @@ public class SupprimerProduit extends AppCompatActivity {
 
         this.tv_information_delete = findViewById(R.id.tv_information_delete);
 
+        String id;
+
         try {
-            if (getIntent().hasExtra("produit_id") == false) {
-                throw new Exception("Aucun Extra donne pour le titre");
-                     }
-        } catch (Exception e) {
+            // si intent a une extra Produit_id pour demander supprimer 1 produit, on va appeller methode supprimer produit
+            if (getIntent().hasExtra(NameExtra.PRODUIT_ID.toString())) {
+                id = getIntent().getStringExtra(NameExtra.PRODUIT_ID.toString());
+                act_supprimer(id, NameExtra.PRODUIT);
+            }
+            // si intent a une extra MP_id pour demander supprimer 1 MP, on va appeller methode supprimer MP
+            else if (getIntent().hasExtra(NameExtra.MP_ID.toString())){
+                id = getIntent().getStringExtra(NameExtra.MP_ID.toString());
+                act_supprimer(id, NameExtra.MP);
+            }
+            // si intent a une extra Categorie_id pour demander supprimer 1 categorie, on va appeller methode supprimer categorie
+            else if (getIntent().hasExtra(NameExtra.CATEGORIE_ID.toString())){
+                id = getIntent().getStringExtra(NameExtra.CATEGORIE_ID.toString());
+                act_supprimer(id, NameExtra.CATEGORIE);
+            }
+            // si intent a une extra Ingredient_id pour demander supprimer 1 ingredient, on va appeller methode supprimer ingredient
+            else if (getIntent().hasExtra(NameExtra.INGREDIENT_ID.toString())){
+                id = getIntent().getStringExtra(NameExtra.INGREDIENT_ID.toString());
+                act_supprimer(id, NameExtra.INGREDIENT);
+            }
 
-            AppelToast.displayCustomToast(this, "Erreur détectée lors du remplissage de la vue [" + e.toString() + "]");
-
-            getIntent().setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        }
-
-        // mettre Nom du produit
-        String produit_id = getIntent().getStringExtra("produit_id");
-
-            try {
-                supprimer_produit(produit_id,tv_information_delete);
-
+            // Afficher 1 message dans l'objet textview
+            tv_information_delete.setText("SUPPRIMEE!!!");
               } catch (Exception e) {
                   e.printStackTrace();
+                  Log.e("APP-BOULANGERIE: ", "Erreur: Ne peut pas supprime " + e.toString());
           }
 
 
+
     }
 
+    // Methode onclick sur bouton "Fermer" pour fermer la page et retour du page Menu
     public void act_fermer_page_supprimer(View view) {
 
-        AppelIntent.appelIntentSimple(this,PageListeProduits.class);
+        AppelIntent.appelIntentSimple(this,Menu.class);
     }
 
-    private void supprimer_produit(String id, TextView tv_information_delete) throws Exception {
-        //String textUrl = "http://192.168.43.190:8080/Bouglangerie/webapi/produit/deleteProduit/"+id;
-        String textUrl ="http://192.168.43.137:8080/gestion_boulangerie/webapi/produit/deleteProduit/"+id;
+    // Methode pour supprimer objet selon la classe demande
+    private void act_supprimer(String id, NameExtra nameExtra) throws Exception {
+        String textUrl = null;
 
-        String methode = "DELETE";
+            // si on demander supprimer 1 produit, on va prendre l'url du supprimer Produit pour prendre la connextion au server
+           if (nameExtra == NameExtra.PRODUIT) {
+               textUrl = MyURL.TITLE.toString() + MyURL.DELETEPRODUIT.toString() + id;
+           }
+           // sinon,  on demander supprimer 1 MP, on va prendre l'url du supprimer MP pour prendre la connextion au server
+           else if ( nameExtra == NameExtra.MP) {
+               textUrl = MyURL.TITLE.toString() + MyURL.DELETEMP.toString() + id;
+           }
+           //sinon, on demander supprimer 1 categorie, on va prendre l'url du supprimer categorie pour prendre la connextion au server
+           else if (nameExtra == NameExtra.CATEGORIE) {
+            textUrl = MyURL.TITLE.toString() + MyURL.DELETECATEGORIE.toString() + id;
+           }
+           // sinon, on demander supprimer 1 ingredient, on va prendre l'url du supprimer ingredient pour prendre la connextion au server
+           else if (nameExtra == NameExtra.INGREDIENT){
+               textUrl= MyURL.TITLE.toString() + MyURL.DELETEINGREDIENT.toString()+id;
+            }
 
         SendHttpRequestTask t = new SendHttpRequestTask();
 
-        String[] params = new String[]{textUrl, methode};
+        String[] params = new String[]{textUrl};
         t.execute(params);
 
     }
 
+    // Connecter au server pour faire la demande de supprimation
     private class SendHttpRequestTask extends AsyncTask<String, Void, String> {
-
 
         //out le code qui nécessite un temps d'exécution sera placé dans cette fonction.
         // Étant donné que cette fonction est exécutée dans un thread complètement séparé du thread d'interface utilisateur, vous n'êtes pas autorisé à mettre à jour l'interface ici.
         @Override
         protected String doInBackground(String... params) {
             String url = params[0];
-            String methode = params[1];
-
             String data = null;
             try {
-                data = MyHTTPConnection.httpConnectionRequestDELETE(url, methode);
-                //data = httpConnection(url,methode);
+
+                data = MyHTTPConnection.httpConnectionRequestDELETE(url);
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -90,53 +110,6 @@ public class SupprimerProduit extends AppCompatActivity {
             return data;
         }
 
-        //la resultat de doInBackground est repris et afficher à la vue
-        @Override
-        protected void onPostExecute(String result) {
-            tv_information_delete.setText(result);
-
-        }
-
     }
-
-    public String httpConnection(String textUrl, String methode) throws Exception {
-        HttpURLConnection urlConnection = null;
-        try {
-            // get connect to HTTP server
-            URL url = new URL(textUrl);
-            urlConnection= (HttpURLConnection) url.openConnection();
-            urlConnection.setRequestMethod(methode);
-            urlConnection.setDoOutput(true);
-            urlConnection.setRequestProperty("Content-Type", "application/json");
-            urlConnection.connect();
-
-
-            // Creer 1 valeur type InputSteam pour recuper la flux
-            InputStream in = new BufferedInputStream( urlConnection.getInputStream());
-            //Permet de  décortiquer à partir d'un flux d'un certain nombre de methode indiqué
-            Scanner scanner = new Scanner(in);
-            // il faut remplir ce string avec le reponse du server (à voir avec GSON)
-            String responseServer = null;
-
-            // Prendre la reponser du server et mettre dans ce string
-            responseServer= scanner.nextLine();
-            Log.i("APPLICATION_BOULANGERIE", "Resultat du produit "+ responseServer);
-
-            String result = "Ce produit est supprimé!!!";
-            // Close connection
-            in.close();
-            return result;
-
-        }
-        catch (Exception e){
-            Log.e("Exchange-JSON", " On n'a pas trouve http server ", e);
-
-        } finally {
-            if(urlConnection != null) urlConnection.disconnect();
-        }
-
-        return null;
-    }
-
 
 }
