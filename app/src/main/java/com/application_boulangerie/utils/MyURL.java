@@ -1,75 +1,138 @@
 package com.application_boulangerie.utils;
 
 public enum MyURL {
-    TITLE, AJOUTEPRODUIT, MODIFIERPRODUIT, LISTPRODUIT, DELETEPRODUIT, FINDPRODUITID,
-    AJOUTECATEGORIE, MODIFIERCATEGORIE, LISTCATEGORIE, DELETECATEGORIE, FINDCATEGORIENAME,
-    AJOUTEMP, MODIFIERMP, LISTMP, DELETEMP,
-    AJOUTEINGREDIENT, MODIFIERINGREDIENT, LISTINGREDIENT, DELETEINGREDIENT, LISTINGREDIENTBYPRODUIT;
+    TITLE {
+        public String toString() {
+            return "http://192.168.43.177:8080/boulangerie/webapi";
+        }
+    },
+    AJOUTEPRODUIT {
+        public String toString() {
+            return "/produit/insertionProduit/";
+        }
+    },
+    MODIFIERPRODUIT {
+        public String toString() {
+            return "/produit/updateProduit/";
+        }
+    },
+    LISTPRODUIT {
+        public String toString() {
+            return "/produit/getAllProduits";
+        }
+    },
+    DELETEPRODUIT {
+        public String toString() {
+            return "/produit/deleteProduit/";
+        }
+    },
+    FINDPRODUITID {
+        public String toString() {
+            return "/produit/findbyIDProduit/";
+        }
+    },
+    FINDLISTPRODUITCATEGORIE {
+        public String toString() {
+            return "/produit/findAllProduitsbyIDCategorie/";
+        }
+    },
+    AJOUTECATEGORIE {
+        public String toString() {
+            return "/categorie/insertionCategorie";
+        }
+    },
+    MODIFIERCATEGORIE {
+        public String toString() {
+            return "/categorie/updateCategorie/";
+        }
+    },
+    LISTCATEGORIE {
+        public String toString() {
+            return "/categorie/getAllCategories";
+        }
+    },
+    DELETECATEGORIE {
+        public String toString() {
+            return "/categorie/deleteCategorie/";
+        }
+    },
+    FINDCATEGORIEBYID {
+        public String toString() {
+            return "/categorie/findbyIDCategorie/";
+        }
+    },
+    FINDCATEGORIENAME {
+        public String toString() {
+            return "/categorie/findbyNameCategorie/";
+        }
+    },
+    AJOUTEMP {
+        public String toString() {
+            return "/matierepremiere/insertionMP";
+        }
+    },
+    MODIFIERMP {
+        public String toString() {
+            return "/matierepremiere/updateMP/";
+        }
+    },
+    LISTMP {
+        public String toString() {
+            return "/matierepremiere/getAllMPs";
+        }
+    },
+    DELETEMP {
+        public String toString() {
+            return "/matierepremiere/deleteMP/";
+        }
+    },
+    FINDMPBYID {
+        public String toString() {
+            return "/matierepremiere/findbyIDMP/";
+        }
+    },
+    AJOUTEINGREDIENT {
+        public String toString() {
+            return "/ingredient/insertionIngredient";
+        }
+    },
+    MODIFIERINGREDIENT {
+        public String toString() {
+            return "/ingredient/updateIngredient/";
+        }
+    },
+    LISTINGREDIENT {
+        public String toString() {
+            return "/ingredient/getAllIngredients";
+        }
+    },
+    DELETEINGREDIENT {
+        public String toString() {
+            return "/ingredient/deleteIngredient/";
+        }
+    },
+    FINDINGREDIENTBYID {
+        public String toString() {
+            return "/ingredient/findbyID/";
+        }
+    },
+    LISTINGREDIENTBYPRODUIT {
+        public String toString() {
+            return "/ingredient/findbyProduitID/";
+        }
+    },
+    FINDUSERBYNAME {
+        public String toString() {
+            return "/user/findbyNameUtilisateur/";
+        }
+    },
+    LISTUSERS {
+        public String toString() {
+            return "/user/getAllUtilisateurs";
+        }
+    };
 
         @Override
-        public String toString() {
-            if (this == TITLE) {
-                return "http://192.168.43.148:8080/gestion_boulangerie/webapi";
-
-            } else if (this == AJOUTEPRODUIT) {
-                return "/produit/insertionProduit/";
-
-            }else if (this == MODIFIERPRODUIT) {
-                return "/produit/updateProduit/";
-
-            }else if (this == DELETEPRODUIT) {
-                return "/produit/deleteProduit/";
-            }
-            else if (this == LISTPRODUIT) {
-                return "/produit/getAllProduits";
-            }
-            else if (this == FINDPRODUITID) {
-                return "/produit/findbyIDProduit/";
-            }
-            else if (this == AJOUTECATEGORIE) {
-                return "/categorie/insertionCategorie";
-            }
-            else if (this == MODIFIERCATEGORIE) {
-                return "/categorie/updateCategorie/";
-            }
-            else if (this == DELETECATEGORIE) {
-                return "/categorie/deleteCategorie/";
-
-            }else if (this == LISTCATEGORIE) {
-                return "/categorie/getAllCategories";
-            }
-            else if (this == FINDCATEGORIENAME) {
-                return "/categorie/findbyNameCategorie/";
-            }
-            else if (this == AJOUTEINGREDIENT) {
-                return "/ingredient/insertionIngredient";
-            }
-            else if (this == MODIFIERINGREDIENT) {
-                return "/ingredient/updateIngredient/";
-            }
-            else if (this == DELETEINGREDIENT) {
-                return "/ingredient/deleteIngredient/";
-            }
-            else if (this == LISTINGREDIENT) {
-                return "/ingredient/getAllIngredients";
-            }
-            else if (this == LISTINGREDIENTBYPRODUIT) {
-                return "/ingredient/findbyProduitID/";
-            }
-            else if (this == AJOUTEMP) {
-                return "/matierepremiere/insertionMP";
-            }
-            else if (this == MODIFIERMP) {
-                return "/matierepremiere/updateMP/";
-            }
-            else if (this == DELETEMP) {
-                return "/matierepremiere/deleteMP/";
-            }
-            else if (this == LISTMP) {
-                return "/matierepremiere/getAllMPs";
-            }
-
-            return super.toString();
+        public abstract String toString() ;
     }
 
-}
