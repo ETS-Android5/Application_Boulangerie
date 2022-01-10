@@ -1,27 +1,32 @@
 package com.application_boulangerie;
 
+import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.os.AsyncTask;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
 
+import com.application_boulangerie.data.Categorie;
 import com.application_boulangerie.data.Produit;
-import com.application_boulangerie.extrafonctions.AppelIntent;
-import com.application_boulangerie.extrafonctions.AppelToast;
+import com.application_boulangerie.utils.AppelDialog;
+import com.application_boulangerie.utils.AppelIntent;
+import com.application_boulangerie.utils.AppelToast;
+import com.application_boulangerie.utils.Fonctions;
+import com.application_boulangerie.utils.MyHTTPConnection;
+import com.application_boulangerie.utils.MyURL;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AjouterProduit extends AppCompatActivity {
 
@@ -29,7 +34,11 @@ public class AjouterProduit extends AppCompatActivity {
     EditText edt_produit_nom_cree;
     EditText edt_produit_prix_cree;
     EditText edt_produit_quantite_cree;
-    EditText edt_produit_ingredient_cree;
+    EditText edt_produit_categorie_cree;
+    Button bt_aide;
+    ListView listView_aide_listCategorie;
+    List<Categorie> listCategorie = new ArrayList<>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,15 +46,19 @@ public class AjouterProduit extends AppCompatActivity {
         setContentView(R.layout.activity_ajouter_produit);
 
         fct_associationViewAuJava();
+
     }
+
+
 
     // On associe le XML avec le JAVA
     private void fct_associationViewAuJava() {
         this.tv_message = findViewById(R.id.tv_message);
-        this.edt_produit_nom_cree = findViewById(R.id.edt_produit_nom_update);
-        this.edt_produit_prix_cree = findViewById(R.id.edt_produit_prix_update);
-        this.edt_produit_quantite_cree = findViewById(R.id.edt_produit_quantite_update);
-        this.edt_produit_ingredient_cree = findViewById(R.id.edt_produit_ingredient_update);
+        this.edt_produit_nom_cree = findViewById(R.id.edt_produit_nom_ajouter);
+        this.edt_produit_prix_cree = findViewById(R.id.edt_produit_prix_ajouter);
+        this.edt_produit_quantite_cree = findViewById(R.id.edt_produit_quantite_ajouter);
+        this.edt_produit_categorie_cree = findViewById(R.id.edt_produit_categorie_ajouter);
+        this.bt_aide = findViewById(R.id.bt_aide);
     }
 
     public void act_retour_pageListProduit(View view) {
@@ -53,26 +66,29 @@ public class AjouterProduit extends AppCompatActivity {
         AppelIntent.appelIntentSimple(this, PageListeProduits.class);
     }
 
+    @SuppressLint("SetTextI18n")
     public void act_valide_ajouter_produit(View view) {
 
-        String nom = ajouteText(edt_produit_nom_cree);
-        Double prix = Double.valueOf(ajouteText(edt_produit_prix_cree));
-        Integer quantite = Integer.valueOf(ajouteText(edt_produit_quantite_cree));
-        String ingredient = ajouteText(edt_produit_ingredient_cree);
+        try {
+            String nom = Fonctions.prendreText(edt_produit_nom_cree);
+            double prix = Double.parseDouble(Fonctions.prendreText(edt_produit_prix_cree));
+            int quantite = Integer.parseInt(Fonctions.prendreText(edt_produit_quantite_cree));
+            int categorie_id = Integer.parseInt(Fonctions.prendreText(edt_produit_categorie_cree));
 
-        Produit produit = new Produit(nom, prix, quantite, ingredient);
+            Produit produit = new Produit(nom, prix, quantite);
+            ajoutProduit(produit, categorie_id);
 
-            tv_message.setText("Nouveau produit est créé");
-            tv_message.setTextColor(Color.BLUE);
-
-            ajoutProduit(produit, tv_message);
+        } catch (Exception e){
+            Log.e("APP-BOULANGERIE: ","Valeur des parametres est null " + e.toString());
+            AppelToast.displayCustomToast(this, "Entrer les informations, svp!");
+        }
     }
 
-    private void ajoutProduit(Produit produit, TextView tv_message) {
+    private void ajoutProduit(Produit produit, int categorie_id) {
 
-        AppelToast.displayCustomToast(this,"Nouveau produit est créé");
-        String textUrl = "http://192.168.43.190:8080/Bouglangerie/webapi/produit/insertionProduit";
-        String methode = "POST";
+
+        String textUrl1 = MyURL.TITLE.toString()+ MyURL.AJOUTEPRODUIT.toString() +categorie_id;
+        String textUrl2 = MyURL.TITLE.toString() + MyURL.LISTPRODUIT.toString();
 
         // Convertir produit java en Json
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
@@ -82,10 +98,11 @@ public class AjouterProduit extends AppCompatActivity {
         SendHttpRequestTaskCreate t = new SendHttpRequestTaskCreate();
 
         // Declarer les paramettre utilisés dans ce methode
-        String[] params = new String[]{textUrl, methode, json};
+        String[] params = new String[]{textUrl1, json, textUrl2};
 
         //Executer methodes
         t.execute(params);
+
     }
 
     private class SendHttpRequestTaskCreate extends AsyncTask<String, Void, String> {
@@ -95,72 +112,131 @@ public class AjouterProduit extends AppCompatActivity {
         // thread d'interface utilisateur, vous n'êtes pas autorisé à mettre à jour l'interface ici.
         @Override
         protected String doInBackground(String... params) {
-            String url = params[0];
-            String methode = params[1];
-            String produit = params[2];
+            String urlAjouterProduit = params[0];
+            String str_produit = params[1];
+            Produit produit = new Gson().fromJson(str_produit,Produit.class);
+            String urlListProduit = params[2];
             String result = null;
 
             try {
                 // prendre la reponse du server et mettre dans ce String
-                result = httpConnection(url,methode, produit);
+                result = MyHTTPConnection.startHttpRequestGET(urlListProduit);
+
+                List<Produit> listProduit = Fonctions.changefromJsonListProduit(result);
+
+                Boolean check = false;
+                for (Produit p : listProduit) {
+                    String test = p.getProduit_nom().toUpperCase();
+                    if(test.equals(produit.getProduit_nom().toUpperCase())){
+                        check = true;
+                        break;
+                    }
+                }
+
+                if (!check){
+                    creeProduit(urlAjouterProduit,str_produit);
+                    result = "OK";
+                }
+
             } catch (Exception e) {
                 e.printStackTrace();
-                // Afficher un toast s'il y a erreur
-                AppelToast.displayCustomToast(AjouterProduit.this, "Ne peut pas connect au server");
+             Log.e("APP-BOULANGERIE:", "Erreur: Ne peut pas connect au server");
+            }
+
+            return result;
+        }
+        //la resultat de doInBackground est repris et afficher à la vue
+        @RequiresApi(api = Build.VERSION_CODES.M)
+        @Override
+        protected void onPostExecute( String result ) {
+
+            if (!result.equals("OK")) {
+
+                tv_message.setText("Ce produit est existée!");
+                tv_message.setTextColor(Color.RED);
+            } else {
+                tv_message.setText("Nouveau produit est créé ");
+                tv_message.setTextColor(Color.BLUE);
+                AppelToast.displayCustomToast(AjouterProduit.this,"Nouveau produit est créé");
+            }
+
+
+        }
+        private void creeProduit(String url, String produit) {
+            try {
+                MyHTTPConnection.httpConnectionRequestPOST(url,produit);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+
+    }
+
+    // Methode onclick sur bouton "aide" pour afficher la liste des categories et permettre utilisateur choisir 1 categorie
+    public void act_affichage_aide_listCategorie(View view) {
+
+
+        AppelToast.displayCustomToast(this, "Ouvrir la liste des categories");
+        // Appeller la methode affichage liste des categorie et permettre utilisateur choisir categorie
+        prendrelistCategorieHTTP();
+
+
+    }
+
+    // methode affichage liste des categorie et permettre utilisateur choisir categorie
+    private void prendrelistCategorieHTTP(){
+        // Get connection to HTTP server throw Thread
+        String textUrl =MyURL.TITLE.toString()+ MyURL.LISTCATEGORIE.toString();
+
+        SendHttpRequestTaskCategorie t = new SendHttpRequestTaskCategorie();
+
+        String[] params = new String[]{textUrl};
+        t.execute(params);
+
+
+    }
+
+    private class SendHttpRequestTaskCategorie extends AsyncTask<String, Void, String> {
+
+
+        //out le code qui nécessite un temps d'exécution sera placé dans cette fonction.
+        // Étant donné que cette fonction est exécutée dans un thread complètement séparé du thread d'interface utilisateur, vous n'êtes pas autorisé à mettre à jour l'interface ici.
+        @RequiresApi(api = Build.VERSION_CODES.M)
+        @Override
+        protected  String  doInBackground(String... params) {
+            String url = params[0];
+
+            String result = null;
+            try {
+                result = MyHTTPConnection.startHttpRequestGET(url);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
 
             return result;
         }
 
-    }
+        //la resultat de doInBackground est repris et afficher à la vue
+        @RequiresApi(api = Build.VERSION_CODES.M)
+        @Override
+        protected void onPostExecute( String result ) {
 
-    public String  httpConnection(String textUrl, String methode, String json) throws Exception {
+            // On converti 1 objet categorie Java en JSON
+            AjouterProduit.this.listCategorie = Fonctions.changefromJsonListCategorie(result);
 
-            // Get connection to HTTP server
-            HttpURLConnection urlConnection = null;
-            try {
+            // Appeller AlerDialog pour afficher la liste avec option de select categorie
+            AppelDialog.showAlertDialogListCategorie(AjouterProduit.this, listCategorie, edt_produit_categorie_cree);
 
-                // get connect to HTTP server
-                URL url = new URL(textUrl);
-                urlConnection = (HttpURLConnection) url.openConnection();
-                urlConnection.setRequestMethod(methode);
-                urlConnection.setDoOutput(true);
-                urlConnection.setRequestProperty("Content-Type", "application/json");
+            // ArrayAdapter a utilisé à afficher le ListView avec des ListItem simple
+            // android.R.layout.simple_list_item_1 est une disposition prédéfinie constante d'Android.
+            //ArrayAdapter arrayAdapter_listCours = new ArrayAdapter<Categorie>(AjouterProduit.this, android.R.layout.simple_gallery_item,listCategorie);
 
-                //écriture de texte dans un flux de sortie
-                OutputStream out = new BufferedOutputStream(urlConnection.getOutputStream());
-                out.write(json.getBytes());
-                out.close();
-                //The connection is opened implicitly by calling getInputStream.
-                urlConnection.getInputStream();
-
-                // Creer 1 valeur type InputSteam pour recuper la flux
-                InputStream in = new BufferedInputStream(urlConnection.getInputStream());
-                //Permet de  décortiquer à partir d'un flux d'un certain nombre de methode indiqué
-                Scanner scanner = new Scanner(in);
-                // Creer 1 chaine type String pour stocker la reponse du server
-                String responseServer = null;
-
-                // prendre la response du server et mettre dans ce String
-                responseServer = scanner.nextLine();
+            //listView_aide_listCategorie.setAdapter(arrayAdapter_listCours);
 
 
-                return responseServer;
+        }
 
-            } catch (Exception e) {
-                Log.e("APPLICATION_BOULANGERIE", " On n'a pas trouve http server ", e);
-
-            } finally {
-                if (urlConnection != null) urlConnection.disconnect();
-            }
-     return null;
-    }
-
-    public String ajouteText( EditText edT) {
-        String t= null;
-        // Verifier si editText est vide
-            t = edT.getText().toString();
-            return t;
     }
 
 }
