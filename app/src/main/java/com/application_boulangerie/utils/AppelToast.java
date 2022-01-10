@@ -1,4 +1,4 @@
-package com.application_boulangerie.extrafonctions;
+package com.application_boulangerie.utils;
 
 import android.content.Context;
 import android.widget.Toast;
@@ -9,7 +9,7 @@ public class AppelToast {
 
         final Toast toast;
 
-        toast = Toast.makeText(context, toastText, Toast.LENGTH_LONG);
+        toast = Toast.makeText(context, toastText, Toast.LENGTH_SHORT);
         toast.show();
 
     }
