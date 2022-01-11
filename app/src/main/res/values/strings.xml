@@ -51,6 +51,11 @@
     <string name="phase_entrer_votre_utilisateur">Entrer votre utilisateur</string>
     <string name="mot_utilisateur">Utilisateur</string>
     <string name="mot_connexion">Connexion</string>
+    <string name="image_du_page_deconnexion">image du page deconnexion</string>
+    <string name="phase_connexion">Je me reconnecte</string>
+    <string name="phase_produit_id">Produit Id</string>
+    <string name="phase_mp_id">Mp Id</string>
+    <string name="phase_mp_nom_id">MP ID</string>
 
 
 </resources>

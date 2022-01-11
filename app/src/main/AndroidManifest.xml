@@ -10,8 +10,29 @@
         android:label="@string/app_name"
         android:roundIcon="@drawable/icon_round"
         android:supportsRtl="true"
-        android:usesCleartextTraffic="true"
-        android:theme="@style/Theme.Application_Boulangerie">
+        android:theme="@style/Theme.Application_Boulangerie"
+        android:usesCleartextTraffic="true">
+        <activity
+            android:name=".PageDeconnexion"
+            android:exported="false" />
+        <activity
+            android:name=".PageCategorie"
+            android:exported="false" />
+        <activity
+            android:name=".PageIngredient"
+            android:exported="false" />
+        <activity
+            android:name=".PageListIngredient"
+            android:exported="false" />
+        <activity
+            android:name=".PageMatierePremiere"
+            android:exported="false" />
+        <activity
+            android:name=".PageListeMP"
+            android:exported="false" />
+        <activity
+            android:name=".Menu"
+            android:exported="false" />
         <activity
             android:name=".SupprimerProduit"
             android:exported="false" />
