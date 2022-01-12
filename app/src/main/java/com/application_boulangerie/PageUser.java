@@ -140,7 +140,7 @@ public class PageUser extends AppCompatActivity {
             String nom = Fonctions.prendreText(edt_user_name);
             String pass = Fonctions.prendreText(edt_user_pass);
             if (id == 1 && !nom.equals("admin")) {
-                tv_message_page_user.setText("Impossible de modifier cette utilisateur. Vous ne pouvez modifier que son mot de pass");
+                tv_message_page_user.setText("Impossible de modifier cet utilisateur. Vous ne pouvez modifier que son mot de pass");
                 tv_message_page_user.setTextColor(Color.RED);
             } else {
                 // Creer nouveau utilisteur avec les valeurs pris dans la vue
@@ -148,7 +148,7 @@ public class PageUser extends AppCompatActivity {
 
                 // mise a jour l'utilisateur dans le database
                 modifierUser(user);
-                AppelToast.displayCustomToast(this, "Cette utilisateur est modifié");
+                AppelToast.displayCustomToast(this, "Cet utilisateur est modifié");
             }
         } catch (Exception e){
             Log.e("APP-BOULANGERIE: ", "Valeur des parametres est null "+ e.toString());
@@ -223,7 +223,7 @@ public class PageUser extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result) {
             if (result.equals("false")) {
-                String message = "Cette utilisateur est modifiée!";
+                String message = "Cet utilisateur est modifiée!";
                 tv_message_page_user.setText(message);
                 tv_message_page_user.setTextColor(Color.BLUE);
             } else if (result.equals("true")) {
@@ -252,7 +252,7 @@ public class PageUser extends AppCompatActivity {
                     // Appeller AlertDialog pour confirmation la demande de supprimer
                     AppelDialog.showAlertDialogSuppimer(PageUser.this, tv_user_id, NameExtra.UTILISATEUR);
                 } else {
-                    tv_message_page_user.setText("Vous ne pouvez pas supprimer cette utilisateur. C'est ADMINISTRATEUR.");
+                    tv_message_page_user.setText("Vous ne pouvez pas supprimer cet utilisateur. C'est ADMINISTRATEUR.");
                     tv_message_page_user.setTextColor(Color.RED);
                 }
             }
@@ -346,10 +346,10 @@ public class PageUser extends AppCompatActivity {
 
             if (!result.equals("OK")) {
 
-                tv_message_page_user.setText("Cette utilisateur est existée!");
+                tv_message_page_user.setText("Cet utilisateur est existée!");
                 tv_message_page_user.setTextColor(Color.RED);
             } else {
-                tv_message_page_user.setText("Nouveau utilisateur est crée!");
+                tv_message_page_user.setText("Nouvel utilisateur est crée!");
                 tv_message_page_user.setTextColor(Color.BLUE);
             }
 

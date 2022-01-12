@@ -80,7 +80,7 @@ public class PageIngredient extends AppCompatActivity {
         else if (getIntent().hasExtra(NameExtra.PRODUIT_ID.toString())){
             String produit_id = getIntent().getStringExtra(NameExtra.PRODUIT_ID.toString());
             tv_ingredient_produitID.setText(produit_id);
-            tv_message_page_ingredient.setText("Entrer information pour ajouter nouveau Ingredient");
+            tv_message_page_ingredient.setText("Entrer information pour ajouter nouvel Ingredient");
         }
 
     }
@@ -145,7 +145,7 @@ public class PageIngredient extends AppCompatActivity {
 
             ajouternouveauIngredient(ingredient);
 
-            tv_message_page_ingredient.setText("Nouveau ingredient est créé ");
+            tv_message_page_ingredient.setText("Nouvel ingredient est créé ");
             tv_message_page_ingredient.setTextColor(Color.BLUE);
 
 
@@ -219,7 +219,7 @@ public class PageIngredient extends AppCompatActivity {
                 AppelDialog.showAlertDialogSuppimer(PageIngredient.this, tv_id_ingredient, NameExtra.INGREDIENT);
             }
         }catch (Exception e){
-            Log.e("APP-BOULANGERIE: ", "Erreur de supprimer la MP, pas de mp_id");
+            Log.e("APP-BOULANGERIE: ", "Erreur de supprimer l'ingredient, pas de ingredient_id");
             AppelToast.displayCustomToast(this, "Il n'y a pas de Ingredient pour supprimer, il faut choisir 1 ingredient dans la liste pour supprimer");
         }
     }
@@ -243,7 +243,7 @@ public class PageIngredient extends AppCompatActivity {
 
             // mise a jour le produit dans le database
             modifierIngredient(this.ingredient);
-            AppelToast.displayCustomToast(this, "Cette ingredient est modifié");
+            AppelToast.displayCustomToast(this, "Cet ingredient est modifié");
 
         } catch (Exception e){
             Log.e("APP-BOULANGERIE: ", "Valeur des parametres est null "+ e.toString());
@@ -318,7 +318,7 @@ public class PageIngredient extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result) {
             if (result.equals("false")) {
-                String message = "Cette ingredient est modifiée!";
+                String message = "Cet ingredient est modifiée!";
                 tv_message_page_ingredient.setText(message);
                 tv_message_page_ingredient.setTextColor(Color.BLUE);
             } else if (result.equals("true")) {
