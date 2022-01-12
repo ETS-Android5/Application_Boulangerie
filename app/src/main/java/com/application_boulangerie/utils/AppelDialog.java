@@ -15,10 +15,12 @@ import com.application_boulangerie.MainActivity;
 import com.application_boulangerie.PageCategorie;
 import com.application_boulangerie.PageDeconnexion;
 import com.application_boulangerie.PageListeProduits;
+import com.application_boulangerie.PageUser;
 import com.application_boulangerie.R;
 import com.application_boulangerie.SupprimerProduit;
 import com.application_boulangerie.data.Categorie;
 import com.application_boulangerie.data.MatierePremiere;
+import com.application_boulangerie.data.Utilisateur;
 
 import java.util.List;
 
@@ -55,6 +57,8 @@ public class AppelDialog {
                     intent.putExtra(NameExtra.CATEGORIE_ID.toString(), produit_id);
                 }else if (i_nameExtra== NameExtra.INGREDIENT) {
                     intent.putExtra(NameExtra.INGREDIENT_ID.toString(), produit_id);
+                }else if (i_nameExtra== NameExtra.UTILISATEUR) {
+                    intent.putExtra(NameExtra.UTILISATEUR_ID.toString(), produit_id);
                 }
 
                 context.startActivity(intent);
@@ -312,4 +316,53 @@ public class AppelDialog {
         alert.show();
     }
 
+    public static void showAlertDialogListUsers (final Activity activity, List<Utilisateur> listUsers)  {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+
+        // Set Title.
+        builder.setTitle(Message.DIALOG_TITRE_LISTUSERS.toString());
+
+        // Add a list
+        final String[] str_listUsers = new String[listUsers.size()];
+        final String[] str_listUsers_id = new String[listUsers.size()];
+
+        int i = 0;
+        for (Utilisateur user: listUsers) {
+            str_listUsers[i] = user.toString() ;
+            str_listUsers_id[i] = String.valueOf(user.getUser_id());
+            i++;
+        }
+
+        builder.setItems(str_listUsers, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                AppelIntent.appelIntentAvecExtraUser(activity, PageUser.class, str_listUsers_id[which] );
+            }
+        });
+
+        builder.setCancelable(true);
+        builder.setIcon(R.drawable.icon_app);
+
+        // Creer button "Fermer" with OnClickListener.
+        builder.setNegativeButton("Fermer", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                AppelToast.displayCustomToast(activity, Message.TOAST_DIALOG_BOUTON_FERMER.toString());
+                //  Cancel
+                dialog.cancel();
+            }
+        });
+
+        // Creer button "Ajouter" with OnClickListener.
+        builder.setPositiveButton("Nouveau Utilisateur", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                AppelIntent.appelIntentSimple(activity,PageUser.class);
+                dialog.cancel();
+            }
+        });
+
+        // Creer AlertDialog:
+        AlertDialog alert = builder.create();
+        alert.show();
+    }
 }

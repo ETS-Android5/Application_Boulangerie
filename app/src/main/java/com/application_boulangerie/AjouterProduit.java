@@ -75,9 +75,13 @@ public class AjouterProduit extends AppCompatActivity {
             int quantite = Integer.parseInt(Fonctions.prendreText(edt_produit_quantite_cree));
             int categorie_id = Integer.parseInt(Fonctions.prendreText(edt_produit_categorie_cree));
 
-            Produit produit = new Produit(nom, prix, quantite);
-            ajoutProduit(produit, categorie_id);
-
+            if(!nom.isEmpty()) {
+                Produit produit = new Produit(nom, prix, quantite);
+                ajoutProduit(produit, categorie_id);
+            }else {
+                tv_message.setText("Entrer nom du produit, svp");
+                tv_message.setTextColor(Color.RED);
+            }
         } catch (Exception e){
             Log.e("APP-BOULANGERIE: ","Valeur des parametres est null " + e.toString());
             AppelToast.displayCustomToast(this, "Entrer les informations, svp!");

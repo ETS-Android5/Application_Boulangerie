@@ -5,6 +5,7 @@
     android:id="@+id/contain_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:visibility="visible"
     tools:context=".Menu">
 
     <ImageView
@@ -81,7 +82,7 @@
     </ListView>
 
     <Button
-        android:id="@+id/bt_ajouter"
+        android:id="@+id/bt_ajouter_user"
         android:layout_width="37dp"
         android:layout_height="32dp"
         android:layout_marginStart="16dp"
@@ -120,6 +121,23 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/line_1" />
+        app:srcCompat="@drawable/line_1"
+        android:contentDescription="TODO" />
+
+    <Button
+        android:id="@+id/bt_users"
+        android:layout_width="43dp"
+        android:layout_height="33dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/user"
+        android:backgroundTint="@color/brown_fonce"
+        android:keepScreenOn="true"
+        android:onClick="act_modifier_user"
+        android:textColor="@color/orange"
+        android:visibility="visible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
 </android.support.constraint.ConstraintLayout>

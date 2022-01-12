@@ -44,12 +44,17 @@ public enum Message {
     },
     DIALOG_TITRE_LISTCATEGORIE {
         public String toString() {
-            return  "List des Categories" ;
+            return  "Liste des Categories" ;
         }
     },
     DIALOG_CONFIRMATION_CATEGORIE {
         public String toString() {
             return  "Vous voulez MODIFIER cette categorie ou AFFICHER sa liste des produits?" ;
+        }
+    },
+    DIALOG_TITRE_LISTUSERS {
+        public String toString() {
+            return  "Liste des Utilisateurs" ;
         }
     },
     TOAST_DIALOG_BUTTON_AFFICHER_PRODUIT {

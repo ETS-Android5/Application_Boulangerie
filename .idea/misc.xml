@@ -26,6 +26,7 @@
         <entry key="app/src/main/res/layout/activity_page_liste_produits.xml" value="0.335" />
         <entry key="app/src/main/res/layout/activity_page_matiere_premiere.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_page_produit.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/activity_page_user.xml" value="0.125" />
         <entry key="app/src/main/res/layout/activity_supprimer_produit.xml" value="0.19746376811594202" />
         <entry key="app/src/main/res/layout/custome.xml" value="0.1" />
         <entry key="app/src/main/res/layout/customer_list_view_layout.xml" value="0.1515625" />

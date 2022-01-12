@@ -7,7 +7,7 @@
     tools:context=".PageCategorie">
 
     <ImageView
-        android:id="@+id/im_page_categorie"
+        android:id="@+id/im_page_user"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:contentDescription="@string/image_du_page_produit"
@@ -21,7 +21,7 @@
         app:srcCompat="@drawable/page_categorie" />
 
     <TextView
-        android:id="@+id/tv_message_page_categorie"
+        android:id="@+id/tv_message_page_user"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
@@ -33,7 +33,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
-        android:id="@+id/ib_fermer_page_categorie"
+        android:id="@+id/ib_fermer_page_user"
         android:layout_width="48dp"
         android:layout_height="49dp"
         android:layout_marginTop="20dp"
@@ -73,7 +73,7 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/tv_id_categorie"
+        android:id="@+id/tv_title_page_user"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/produit_id"
@@ -83,7 +83,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/bt_ajouter"
+        android:id="@+id/bt_ajouter_user"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="113dp"
@@ -96,7 +96,7 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="SpeakableTextPresentCheck" />
     <Button
-        android:id="@+id/ib_supprimer_categorie"
+        android:id="@+id/ib_supprimer_user"
         android:layout_width="185dp"
         android:layout_height="73dp"
         android:layout_marginEnd="16dp"
@@ -110,7 +110,7 @@
 
 
     <Button
-        android:id="@+id/ib_modifier_categorie"
+        android:id="@+id/ib_modifier_user"
         android:layout_width="185dp"
         android:layout_height="73dp"
         android:layout_marginStart="16dp"

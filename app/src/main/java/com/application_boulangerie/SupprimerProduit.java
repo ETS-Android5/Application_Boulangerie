@@ -44,6 +44,11 @@ public class SupprimerProduit extends AppCompatActivity {
                 id = getIntent().getStringExtra(NameExtra.INGREDIENT_ID.toString());
                 act_supprimer(id, NameExtra.INGREDIENT);
             }
+            // si intent a une extra Utilisateur_id pour demander supprimer 1 utilisateur, on va appeller methode supprimer ingredient
+            else if (getIntent().hasExtra(NameExtra.UTILISATEUR_ID.toString())){
+                id = getIntent().getStringExtra(NameExtra.UTILISATEUR_ID.toString());
+                act_supprimer(id, NameExtra.UTILISATEUR);
+            }
 
             // Afficher 1 message dans l'objet textview
             tv_information_delete.setText("SUPPRIMEE!!!");
@@ -82,6 +87,10 @@ public class SupprimerProduit extends AppCompatActivity {
            else if (nameExtra == NameExtra.INGREDIENT){
                textUrl= MyURL.TITLE.toString() + MyURL.DELETEINGREDIENT.toString()+id;
             }
+           // sinon, on demander supprimer 1 user, on va prendre l'url du supprimer user pour prendre la connextion au server
+           else if (nameExtra == NameExtra.UTILISATEUR){
+               textUrl= MyURL.TITLE.toString() + MyURL.DELETEUSERS.toString()+id;
+           }
 
         SendHttpRequestTask t = new SendHttpRequestTask();
 

@@ -49,9 +49,9 @@ public class PageIngredient extends AppCompatActivity {
     private void fct_associationViewAuJava(){
         this.tv_message_page_ingredient = findViewById(R.id.tv_message_page_ingredient);
         this.tv_id_ingredient = findViewById(R.id.tv_id_ingredient);
-        this.tv_ingredient_produitID = findViewById(R.id.tv_ingredient_produitID);
-        this.edt_ingredient_mp_id = findViewById(R.id.edt_ingredient_mp_id);
-        this.edt_ingredient_quantite= findViewById(R.id.edt_ingredient_quantite);
+        this.tv_ingredient_produitID = findViewById(R.id.tv_user_id);
+        this.edt_ingredient_mp_id = findViewById(R.id.edt_user_name);
+        this.edt_ingredient_quantite= findViewById(R.id.edt_user_pass);
         this.edt_ingredient_unite = findViewById(R.id.edt_ingredient_unite);
     }
 

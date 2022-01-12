@@ -11,7 +11,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.application_boulangerie.data.Ingredient;
 import com.application_boulangerie.data.MatierePremiere;
 import com.application_boulangerie.utils.AppelDialog;
 import com.application_boulangerie.utils.AppelIntent;
@@ -46,8 +45,8 @@ public class PageMatierePremiere extends AppCompatActivity {
         this.tv_message_page_mp = findViewById(R.id.tv_message_page_mp);
         this.tv_id_mp = findViewById(R.id.tv_id_mp);
         this.edt_mp_nom = findViewById(R.id.edt_mp_nom);
-        this.edt_mp_prix = findViewById(R.id.edt_ingredient_mp_id);
-        this.edt_mp_quantite= findViewById(R.id.edt_ingredient_quantite);
+        this.edt_mp_prix = findViewById(R.id.edt_user_name);
+        this.edt_mp_quantite= findViewById(R.id.edt_user_pass);
         this.edt_mp_unite = findViewById(R.id.edt_ingredient_unite);
         this.edt_mp_marque = findViewById(R.id.edt_mp_marque);
 
@@ -57,11 +56,11 @@ public class PageMatierePremiere extends AppCompatActivity {
     //Methode pour afficher la page PageMP
     public void fct_remplirLaVuePageMP() {
 
-        // methode try pour donner 1 exception s'il n'y a pas de Extra
-            if (getIntent().hasExtra("mp_id")) {
+        //  s'il y a extra, on va afficher information de la MP
+            if (getIntent().hasExtra(NameExtra.MP_ID.toString())) {
 
                 // Prendre id du produit puis mettre dans 1 string
-                String mp_id = getIntent().getStringExtra("mp_id");
+                String mp_id = getIntent().getStringExtra(NameExtra.MP_ID.toString());
                 // Remettre this id to type Integer
                 int id = Integer.parseInt(mp_id);
 
@@ -74,7 +73,7 @@ public class PageMatierePremiere extends AppCompatActivity {
                 t.execute(params);
             }
             else{
-                tv_message_page_mp.setText("Entrer information pour ajouter nouveau Matière Première");
+                tv_message_page_mp.setText("Entrer information pour ajouter nouvelle Matière Première");
             }
 
 
@@ -164,16 +163,20 @@ public class PageMatierePremiere extends AppCompatActivity {
 
         try {
             String nom = Fonctions.prendreText(edt_mp_nom);
+
             double prix = Double.parseDouble(Fonctions.prendreText(edt_mp_prix));
             int quantite = Integer.parseInt(Fonctions.prendreText(edt_mp_quantite));
             String unite = Fonctions.prendreText(edt_mp_unite);
             String marque = Fonctions.prendreText(edt_mp_marque);
+            if (!nom.isEmpty()&&!unite.isEmpty()) {
+                MatierePremiere mp = new MatierePremiere(nom, prix, quantite, unite, marque);
 
-            MatierePremiere mp = new MatierePremiere(nom,prix,quantite,unite,marque);
-
-            // Appeller methode pour verifier si cette MP est existe
-            checkMPexiste(mp);
-
+                // Appeller methode pour verifier si cette MP est existe
+                checkMPexiste(mp);
+            }else {
+                tv_message_page_mp.setText("Entrer nom et/ou unité de la Matière Première, svp!");
+                tv_message_page_mp.setTextColor(Color.RED);
+            }
         } catch (Exception e){
             Log.e("APP-BOULANGERIE: ","Valeur des parametres est null " + e.toString());
             AppelToast.displayCustomToast(this, "Entrer les informations, svp!");
@@ -387,7 +390,7 @@ public class PageMatierePremiere extends AppCompatActivity {
 
     }
 
-    // Methode onclic sur bouton "Retour" pour retour du list MP
+    // Methode onclick sur bouton "Retour" pour retour du list MP
     public void act_retour_list_mp(View view) {
 
         AppelToast.displayCustomToast(this, "Retour à la page Liste des MP");

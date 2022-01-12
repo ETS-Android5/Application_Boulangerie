@@ -86,9 +86,9 @@ public class MainActivity extends AppCompatActivity {
                 // Faire une boucle pour savoir si cette utilisateur est existee
                 for (Utilisateur u: listUsers) {
                     if (test_nom.equals(u.getUser_nom())&&test_pass.equals(u.getUser_password())) {
-                        result = "OK";
+                        result = test_nom;
                        break;
-                    }
+                    } else{ result = "NOK";}
                 }
                 return result;
             } catch (Exception e) {
@@ -102,11 +102,12 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result) {
 
-            if (result == "OK") {
-                AppelIntent.appelIntentSimple(MainActivity.this, Menu.class);
-            } else{
+            if (!result.equals("NOK")) {
+                AppelIntent.appelIntentAvecExtraUser(MainActivity.this, Menu.class, result);
+            } else {
                 AppelToast.displayCustomToast(MainActivity.this, "Verifier votre nom et mot de pass");
             }
+
         }
     }
 }

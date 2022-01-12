@@ -7,6 +7,12 @@ public class Utilisateur  implements Serializable{
 	private int user_id;
 	private String user_nom, user_password;
 
+	//Constructor avec 3 parametres
+	public Utilisateur(int user_id,String user_nom, String user_password) {
+		this.user_id= user_id;
+		this.user_nom = user_nom;
+		this.user_password = user_password;
+	}
 	
 	//Constructor avec 2 parametres
 	public Utilisateur(String user_nom, String user_password) {
@@ -15,7 +21,7 @@ public class Utilisateur  implements Serializable{
 	}
 	@Override
 	public String toString() {
-		return "Users [user_id=" + user_id + ", user_nom=" + user_nom + ", user_password=" + user_password + "]";
+		return "Utilisateur [" + user_nom + "]";
 	}
 	
 	

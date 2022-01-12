@@ -13,6 +13,9 @@
         android:theme="@style/Theme.Application_Boulangerie"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".PageUser"
+            android:exported="false" />
+        <activity
             android:name=".PageDeconnexion"
             android:exported="false" />
         <activity

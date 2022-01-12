@@ -42,8 +42,8 @@ public class PageCategorie extends AppCompatActivity {
     }
 
     private void fct_associationViewAuJava() {
-        this.tv_id_categorie = findViewById(R.id.tv_id_categorie);
-        this.tv_message_page_categorie = findViewById(R.id.tv_message_page_categorie);
+        this.tv_id_categorie = findViewById(R.id.tv_title_page_user);
+        this.tv_message_page_categorie = findViewById(R.id.tv_message_page_user);
         this.edt_categorie_nom = findViewById(R.id.edt_categorie_nom);
     }
 
@@ -121,10 +121,14 @@ public class PageCategorie extends AppCompatActivity {
         try {
             String categorie_nom = Fonctions.prendreText(edt_categorie_nom);
 
-            Categorie categorie = new Categorie(categorie_nom);
+            if (!categorie_nom.isEmpty()) {
+                Categorie categorie = new Categorie(categorie_nom);
 
-            checkCategorieExiste(categorie);
-
+                checkCategorieExiste(categorie);
+            } else {
+                tv_message_page_categorie.setText("Entrer nom de la categorie pour ajouter nouvelle categorie, svp!");
+                tv_message_page_categorie.setTextColor(Color.RED);
+            }
 
         } catch (Exception e){
             Log.e("APP-BOULANGERIE: ","Valeur des parametres est null " + e.toString());

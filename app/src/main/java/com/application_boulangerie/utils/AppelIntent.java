@@ -7,6 +7,7 @@ import com.application_boulangerie.R;
 import com.application_boulangerie.data.Ingredient;
 import com.application_boulangerie.data.MatierePremiere;
 import com.application_boulangerie.data.Produit;
+import com.application_boulangerie.data.Utilisateur;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
@@ -77,32 +78,18 @@ public class AppelIntent {
         context.startActivity(intent);
     }
 
-
-    // Fonction pour appeller Intent avec Extrat pour Page Produit
-    public static void appelIntentAvecExtraPageProduitAvecImage(Context context, Produit produit, Class classAAfficher) {
-
-        // Declarer les variables pour Extra
-
-        String produit_id = String.valueOf(produit.getProduit_id());
-        String produit_nom = produit.getProduit_nom();
-        String produit_prix = String.valueOf(produit.getProduit_prix());
-        String produit_categorie = new Gson().toJson(produit.getProduitCategorie());
-        int imageProduit = R.drawable.ic_launcher_background;
+    public static void appelIntentAvecExtraUser(Context context, Class classAAfficher, String str_user) {
 
 
         // On crée un Intent (Une intention)
         Intent intent = new Intent(context, classAAfficher);
 
-        intent.putExtra("id", produit_id);
-        intent.putExtra("titre", produit_nom);
-        intent.putExtra("categore", produit_categorie);
-        intent.putExtra("prix_produit", produit_prix);
-        intent.putExtra("image_produit", imageProduit);
+        intent.putExtra(NameExtra.UTILISATEUR.toString(), str_user);
 
         //lancer Intent
         context.startActivity(intent);
-
     }
+
 
 }
 

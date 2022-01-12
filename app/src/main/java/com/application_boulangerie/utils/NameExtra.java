@@ -21,6 +21,16 @@ public enum NameExtra {
             return "ingredient";
         }
     },
+    UTILISATEUR {
+        public String toString() {
+            return "user";
+        }
+    },
+    UTILISATEUR_ID {
+        public String toString() {
+            return "user_id";
+        }
+    },
     MP_ID {
         public String toString() {
             return "mp_id";

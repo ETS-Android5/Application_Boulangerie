@@ -15,6 +15,7 @@ import com.application_boulangerie.utils.AppelToast;
 import com.application_boulangerie.utils.Fonctions;
 import com.application_boulangerie.utils.MyHTTPConnection;
 import com.application_boulangerie.utils.MyURL;
+import com.application_boulangerie.utils.NameExtra;
 import com.google.gson.Gson;
 
 import java.util.List;
@@ -80,9 +81,10 @@ public class PageDeconnexion extends AppCompatActivity {
                 // Faire une boucle pour savoir si cette utilisateur est existee
                 for (Utilisateur u: listUsers) {
                     if (test_nom.equals(u.getUser_nom())&&test_pass.equals(u.getUser_password())) {
-                        result = "OK";
+                        result = test_nom;
                         break;
                     }
+                    result = "NOK";
                 }
                 return result;
             } catch (Exception e) {
@@ -96,11 +98,12 @@ public class PageDeconnexion extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result) {
 
-            if (result == "OK") {
-                AppelIntent.appelIntentSimple(PageDeconnexion.this, Menu.class);
-            } else{
+            if (!result.equals("NOK")) {
+                AppelIntent.appelIntentAvecExtraUser(PageDeconnexion.this, Menu.class, result);
+            } else {
                 AppelToast.displayCustomToast(PageDeconnexion.this, "Verifier votre nom et mot de pass");
             }
+
         }
     }
 }

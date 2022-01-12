@@ -3,7 +3,7 @@ package com.application_boulangerie.utils;
 public enum MyURL {
     TITLE {
         public String toString() {
-            return "http://192.168.43.177:8080/boulangerie/webapi";
+            return "http://192.168.43.180:8080/boulangerie/webapi";
         }
     },
     AJOUTEPRODUIT {
@@ -121,16 +121,32 @@ public enum MyURL {
             return "/ingredient/findbyProduitID/";
         }
     },
-    FINDUSERBYNAME {
+    FINDUSERBYID {
         public String toString() {
-            return "/user/findbyNameUtilisateur/";
+            return "/user/findbyIDUtilisateur/";
         }
     },
     LISTUSERS {
         public String toString() {
             return "/user/getAllUtilisateurs";
         }
-    };
+    },
+    DELETEUSERS {
+        public String toString() {
+            return "/user/deleteUtilisateur/";
+        }
+    },
+    MODIFIERUSERS {
+        public String toString() {
+            return "/user/updateUtilisateur/";
+        }
+    },
+    AJOUTEUSER {
+        public String toString() {
+            return "/user/insertionUtilisateur";
+        }
+    }
+    ;
 
         @Override
         public abstract String toString() ;

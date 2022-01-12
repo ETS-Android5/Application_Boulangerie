@@ -56,6 +56,9 @@
     <string name="phase_produit_id">Produit Id</string>
     <string name="phase_mp_id">Mp Id</string>
     <string name="phase_mp_nom_id">MP ID</string>
+    <string name="phase_user_id">User ID</string>
+    <string name="phase_nom_d_utilisateur">Nom d\'Utilisateur</string>
+    <string name="information_de_l_utilisateur">Information de l\'utilisateur</string>
 
 
 </resources>
