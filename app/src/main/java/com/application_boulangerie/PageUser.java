@@ -273,7 +273,7 @@ public class PageUser extends AppCompatActivity {
                 // Appeller methode pour verifier si cette utilisateur est existe
                 checkUserExiste(user);
             }else {
-                tv_message_page_user.setText("Entrer nom et/ou mot de pass de l'utilisateur', svp!");
+                tv_message_page_user.setText("Entrer nom et/ou mot de passe de l'utilisateur', svp!");
                 tv_message_page_user.setTextColor(Color.RED);
             }
         } catch (Exception e){

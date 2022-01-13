@@ -46,8 +46,8 @@
     <string name="phase_ingredient_unite">Unité de l\'ingredient</string>
     <string name="phase_ingredient_produit_id">Id du produit</string>
     <string name="mot_textview">TextView</string>
-    <string name="phase_entrer_votre_mot_de_pass">Entrer votre mot de pass</string>
-    <string name="phase_mot_de_pass">Mot de pass</string>
+    <string name="phase_entrer_votre_mot_de_pass">Entrer votre mot de passe</string>
+    <string name="phase_mot_de_pass">Mot de passe</string>
     <string name="phase_entrer_votre_utilisateur">Entrer votre utilisateur</string>
     <string name="mot_utilisateur">Utilisateur</string>
     <string name="mot_connexion">Connexion</string>
