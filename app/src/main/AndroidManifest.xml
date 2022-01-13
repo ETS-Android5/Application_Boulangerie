@@ -37,7 +37,7 @@
             android:name=".Menu"
             android:exported="false" />
         <activity
-            android:name=".SupprimerProduit"
+            android:name=".PageSupprimer"
             android:exported="false" />
         <activity
             android:name=".ModifierProduit"

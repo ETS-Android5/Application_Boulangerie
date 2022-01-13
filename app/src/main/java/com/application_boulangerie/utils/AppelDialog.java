@@ -9,15 +9,13 @@ import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.application_boulangerie.MainActivity;
 import com.application_boulangerie.PageCategorie;
 import com.application_boulangerie.PageDeconnexion;
 import com.application_boulangerie.PageListeProduits;
 import com.application_boulangerie.PageUser;
 import com.application_boulangerie.R;
-import com.application_boulangerie.SupprimerProduit;
+import com.application_boulangerie.PageSupprimer;
 import com.application_boulangerie.data.Categorie;
 import com.application_boulangerie.data.MatierePremiere;
 import com.application_boulangerie.data.Utilisateur;
@@ -48,7 +46,7 @@ public class AppelDialog {
                 AppelToast.displayCustomToast(context, Message.TOAST_DIALOG_BUTTON_SUPPRIMER.toString()+ i_nameExtra.toString());
                 String produit_id = tv_id.getText().toString();
                 // On crée un Intent (Une intention)
-                Intent intent = new Intent(context, SupprimerProduit.class);
+                Intent intent = new Intent(context, PageSupprimer.class);
                 if (i_nameExtra == NameExtra.PRODUIT) {
                     intent.putExtra(NameExtra.PRODUIT_ID.toString(), produit_id);
                 } else if (i_nameExtra== NameExtra.MP) {

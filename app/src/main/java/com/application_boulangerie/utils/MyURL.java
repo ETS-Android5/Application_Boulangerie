@@ -3,7 +3,7 @@ package com.application_boulangerie.utils;
 public enum MyURL {
     TITLE {
         public String toString() {
-            return "http://192.168.43.180:8080/boulangerie/webapi";
+            return "http://192.168.43.182:8080/boulangerie/webapi";
         }
     },
     AJOUTEPRODUIT {

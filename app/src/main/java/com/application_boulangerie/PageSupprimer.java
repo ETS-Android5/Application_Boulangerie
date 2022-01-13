@@ -12,7 +12,7 @@ import com.application_boulangerie.utils.MyHTTPConnection;
 import com.application_boulangerie.utils.MyURL;
 import com.application_boulangerie.utils.NameExtra;
 
-public class SupprimerProduit extends AppCompatActivity {
+public class PageSupprimer extends AppCompatActivity {
    TextView tv_information_delete;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
