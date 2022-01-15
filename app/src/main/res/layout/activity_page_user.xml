@@ -127,7 +127,7 @@
                 android:ems="10"
                 android:hint="@string/phase_mot_de_pass"
                 android:importantForAutofill="no"
-                android:inputType="textPassword|numberPassword|textWebPassword"
+                android:inputType="textShortMessage|textLongMessage"
                 android:minHeight="48dp"
                 android:textSize="18sp"
                 tools:ignore="TextContrastCheck,TextContrastCheck" />

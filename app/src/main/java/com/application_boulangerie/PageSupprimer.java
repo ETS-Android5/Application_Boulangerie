@@ -14,12 +14,14 @@ import com.application_boulangerie.utils.NameExtra;
 
 public class PageSupprimer extends AppCompatActivity {
    TextView tv_information_delete;
+   TextView tv_userName;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_supprimer_produit);
 
         this.tv_information_delete = findViewById(R.id.tv_information_delete);
+        this.tv_userName= findViewById(R.id.tv_userName);
 
         String id;
 
@@ -48,6 +50,7 @@ public class PageSupprimer extends AppCompatActivity {
             else if (getIntent().hasExtra(NameExtra.UTILISATEUR_ID.toString())){
                 id = getIntent().getStringExtra(NameExtra.UTILISATEUR_ID.toString());
                 act_supprimer(id, NameExtra.UTILISATEUR);
+                tv_userName.setText("admin");
             }
 
             // Afficher 1 message dans l'objet textview
@@ -63,8 +66,13 @@ public class PageSupprimer extends AppCompatActivity {
 
     // Methode onclick sur bouton "Fermer" pour fermer la page et retour du page Menu
     public void act_fermer_page_supprimer(View view) {
+        String nameUser = tv_userName.getText().toString();
+        if (nameUser.equals("admin")){
+            AppelIntent.appelIntentAvecExtraUser(this, Menu.class, nameUser );
+        }else{
+            AppelIntent.appelIntentSimple(this,Menu.class);
+        }
 
-        AppelIntent.appelIntentSimple(this,Menu.class);
     }
 
     // Methode pour supprimer objet selon la classe demande
