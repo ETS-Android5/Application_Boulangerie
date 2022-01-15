@@ -4,7 +4,6 @@ Ce projet est la partie client Android du projet de gestion d'une boulangerie qu
 <br>
 La démonstration de mon projet de création d'une application Android
 <br>
-https://www.youtube.com/embed/Pdmi6IbGVSw
 
 
 [![IMAGE ALT TEXT](http://img.youtube.com/vi/Pdmi6IbGVSw/sddefault.jpg)](https://www.youtube.com/watch?v=Pdmi6IbGVSw "demo")
