@@ -135,7 +135,7 @@
         android:keepScreenOn="true"
         android:onClick="act_modifier_user"
         android:textColor="@color/orange"
-        android:visibility="visible"
+        android:visibility="invisible"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />

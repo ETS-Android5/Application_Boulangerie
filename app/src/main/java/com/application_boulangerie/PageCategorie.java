@@ -305,7 +305,7 @@ public class PageCategorie extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result) {
 
-            String message = "Cette matière première est modifiée!";
+            String message = "Cette categorie est modifiée!";
             tv_message_page_categorie.setText(message);
             tv_message_page_categorie.setTextColor(Color.BLUE);
         }

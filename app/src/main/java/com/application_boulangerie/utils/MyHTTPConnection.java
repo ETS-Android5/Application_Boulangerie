@@ -24,17 +24,14 @@ public class MyHTTPConnection {
             URL url = new URL(textUrl);
             urlConnection= (HttpURLConnection) url.openConnection();
             urlConnection.setRequestMethod(Methode.GET.toString());
-
             //  recuper la flux et mettre dans objet type InputSteam
             in = new BufferedInputStream( urlConnection.getInputStream());
             //Permet de  décortiquer à partir d'un flux d'un certain nombre de methode indiqué
             scanner= new Scanner(in);
             // Creer 1 chaine type String pour stocker la reponse du server
             String responseServer = null;
-
             // mettre la reponse du sever au ce String
             responseServer= scanner.nextLine();
-
             return responseServer;
         }
         catch (Exception e){

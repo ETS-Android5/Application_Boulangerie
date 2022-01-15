@@ -28,6 +28,7 @@ public class Menu extends AppCompatActivity {
     ListView listView_listCategories;
     Categorie categorie;
     Button bt_users;
+    String nameUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,12 +58,12 @@ public class Menu extends AppCompatActivity {
     // Methode pour verifier utilisateur est "admin" ou pas. si oui, il est possible de modifier tous les utilisateur
     public void verifierUser(){
         if (getIntent().hasExtra(NameExtra.UTILISATEUR.toString())) {
-            String nameUser = getIntent().getStringExtra(NameExtra.UTILISATEUR.toString());
+            this.nameUser = getIntent().getStringExtra(NameExtra.UTILISATEUR.toString());
             //bt_users.setText(nameUser);
             if (nameUser.equals("admin")) {
                 bt_users.setVisibility(View.VISIBLE);
-            } else {bt_users.setVisibility(View.INVISIBLE);}
-        }
+            }
+        }else {bt_users.setVisibility(View.INVISIBLE);}
     }
 
     // Methode onclick sur bouton "Tous produits" pour afficher tout les produits dans stock

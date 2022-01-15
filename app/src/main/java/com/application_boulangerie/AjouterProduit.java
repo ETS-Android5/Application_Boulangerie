@@ -111,9 +111,6 @@ public class AjouterProduit extends AppCompatActivity {
 
     private class SendHttpRequestTaskCreate extends AsyncTask<String, Void, String> {
 
-        //out le code qui nécessite un temps d'exécution sera placé dans cette fonction.
-        // Étant donné que cette fonction est exécutée dans un thread complètement séparé du
-        // thread d'interface utilisateur, vous n'êtes pas autorisé à mettre à jour l'interface ici.
         @Override
         protected String doInBackground(String... params) {
             String urlAjouterProduit = params[0];
@@ -125,37 +122,35 @@ public class AjouterProduit extends AppCompatActivity {
             try {
                 // prendre la reponse du server et mettre dans ce String
                 result = MyHTTPConnection.startHttpRequestGET(urlListProduit);
-
+                // Convertir le resultat en type ArrayList Produit et mettre dans 1 objet type ArrayList Produit
                 List<Produit> listProduit = Fonctions.changefromJsonListProduit(result);
-
+                // Creer 1 objet type boolean pour stocker le resultat de la fonction verifier si produit existé ou pas
                 Boolean check = false;
                 for (Produit p : listProduit) {
                     String test = p.getProduit_nom().toUpperCase();
+                    // Si nom du produit est existe dans la liste, valeur du objet "check" est vrai
                     if(test.equals(produit.getProduit_nom().toUpperCase())){
                         check = true;
                         break;
                     }
                 }
-
+                // si objet check est faux, c-a-dit pas de ce produits dans le stock. Donc, on ajouter ce produit dans la database
                 if (!check){
                     creeProduit(urlAjouterProduit,str_produit);
                     result = "OK";
                 }
-
             } catch (Exception e) {
                 e.printStackTrace();
              Log.e("APP-BOULANGERIE:", "Erreur: Ne peut pas connect au server");
             }
-
             return result;
         }
         //la resultat de doInBackground est repris et afficher à la vue
         @RequiresApi(api = Build.VERSION_CODES.M)
         @Override
         protected void onPostExecute( String result ) {
-
+            // si on ne peut pas creer 1 produit, afficher 1 MESSAGE en ROUGE, si non en BLEU
             if (!result.equals("OK")) {
-
                 tv_message.setText("Ce produit est existée!");
                 tv_message.setTextColor(Color.RED);
             } else {
@@ -163,9 +158,8 @@ public class AjouterProduit extends AppCompatActivity {
                 tv_message.setTextColor(Color.BLUE);
                 AppelToast.displayCustomToast(AjouterProduit.this,"Nouveau produit est créé");
             }
-
-
         }
+        // Methode pour ajouter le produit à database du serveur
         private void creeProduit(String url, String produit) {
             try {
                 MyHTTPConnection.httpConnectionRequestPOST(url,produit);
