@@ -2,19 +2,12 @@ package com.application_boulangerie.utils;
 
 import android.content.Context;
 import android.content.Intent;
-
-import com.application_boulangerie.R;
 import com.application_boulangerie.data.Ingredient;
 import com.application_boulangerie.data.MatierePremiere;
 import com.application_boulangerie.data.Produit;
-import com.application_boulangerie.data.Utilisateur;
-import com.google.gson.Gson;
 
-import java.util.ArrayList;
 
 public class AppelIntent {
-
-    public static ArrayList<Produit> produitList = new ArrayList<>();
 
     public static void appelIntentSimple(Context context, Class classAAfficher) {
 
@@ -31,9 +24,10 @@ public class AppelIntent {
 
         String produit_id = String.valueOf(produit.getProduit_id());
 
-        // On crée un Intent (Une intention)
+        // On cree un Intent (Une intention)
         Intent intent = new Intent(context, classAAfficher);
 
+        // On cree 1 EXTRA pour intent
         intent.putExtra(NameExtra.PRODUIT_ID.toString(), produit_id);
 
         //lancer Intent

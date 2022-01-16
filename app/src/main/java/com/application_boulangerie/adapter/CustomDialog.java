@@ -23,7 +23,7 @@ import com.application_boulangerie.utils.Fonctions;
 import com.application_boulangerie.utils.MyHTTPConnection;
 import com.application_boulangerie.utils.MyURL;
 import com.google.gson.Gson;
-
+// Classe pour personnaliser l'affichage de la dialogue
 public class CustomDialog extends Dialog {
 
     public interface ConnectionListener {

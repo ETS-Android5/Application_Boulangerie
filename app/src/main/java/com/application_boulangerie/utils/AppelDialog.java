@@ -2,9 +2,7 @@ package com.application_boulangerie.utils;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.widget.EditText;
@@ -34,34 +32,30 @@ public class AppelDialog {
         // Permettre d'annuller la demande
         builder.setCancelable(true);
         // Creer button "Annuller avec OnClickListener qui permettre fermer le dialog et annuller la demmande
-        builder.setPositiveButton("Annuller", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                AppelToast.displayCustomToast(context,Message.TOAST_DIALOG_BOUTON_ANNULLER.toString());
-                dialog.cancel();
-            }
+        builder.setPositiveButton("Annuller", (dialog, id) -> {
+            AppelToast.displayCustomToast(context,Message.TOAST_DIALOG_BOUTON_ANNULLER.toString());
+            dialog.cancel();
         });
         // Creer le button "Supprimer" avec OnClickListener qui permmettre d'aller au page Supprimer pour supprimer un produit
-       builder.setNegativeButton("Supprimer", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                AppelToast.displayCustomToast(context, Message.TOAST_DIALOG_BUTTON_SUPPRIMER.toString()+ i_nameExtra.toString());
-                String produit_id = tv_id.getText().toString();
-                // On crée un Intent (Une intention)
-                Intent intent = new Intent(context, PageSupprimer.class);
-                if (i_nameExtra == NameExtra.PRODUIT) {
-                    intent.putExtra(NameExtra.PRODUIT_ID.toString(), produit_id);
-                } else if (i_nameExtra== NameExtra.MP) {
-                    intent.putExtra(NameExtra.MP_ID.toString(), produit_id);
-                }else if (i_nameExtra== NameExtra.CATEGORIE) {
-                    intent.putExtra(NameExtra.CATEGORIE_ID.toString(), produit_id);
-                }else if (i_nameExtra== NameExtra.INGREDIENT) {
-                    intent.putExtra(NameExtra.INGREDIENT_ID.toString(), produit_id);
-                }else if (i_nameExtra== NameExtra.UTILISATEUR) {
-                    intent.putExtra(NameExtra.UTILISATEUR_ID.toString(), produit_id);
-                }
+       builder.setNegativeButton("Supprimer", (dialog, id) -> {
+           AppelToast.displayCustomToast(context, Message.TOAST_DIALOG_BUTTON_SUPPRIMER.toString()+ i_nameExtra.toString());
+           String produit_id = tv_id.getText().toString();
+           // On crée un Intent (Une intention)
+           Intent intent = new Intent(context, PageSupprimer.class);
+           if (i_nameExtra == NameExtra.PRODUIT) {
+               intent.putExtra(NameExtra.PRODUIT_ID.toString(), produit_id);
+           } else if (i_nameExtra== NameExtra.MP) {
+               intent.putExtra(NameExtra.MP_ID.toString(), produit_id);
+           }else if (i_nameExtra== NameExtra.CATEGORIE) {
+               intent.putExtra(NameExtra.CATEGORIE_ID.toString(), produit_id);
+           }else if (i_nameExtra== NameExtra.INGREDIENT) {
+               intent.putExtra(NameExtra.INGREDIENT_ID.toString(), produit_id);
+           }else if (i_nameExtra== NameExtra.UTILISATEUR) {
+               intent.putExtra(NameExtra.UTILISATEUR_ID.toString(), produit_id);
+           }
 
-                context.startActivity(intent);
-        }
-    });
+           context.startActivity(intent);
+   });
         // Creer AlertDialog:
         AlertDialog alert = builder.create();
         alert.show();
@@ -82,23 +76,16 @@ public class AppelDialog {
                 i++;
             }
 
-        builder.setItems(listMP_nom, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                AppelToast.displayCustomToast(activity, Message.TOAST_DIALOG_MP.toString() + listMP_nom[which]);
-            }
-        });
+        builder.setItems(listMP_nom, (dialog, which) -> AppelToast.displayCustomToast(activity, Message.TOAST_DIALOG_MP.toString() + listMP_nom[which]));
 
         builder.setCancelable(true);
         builder.setIcon(R.drawable.icon_app);
 
         // Creer button "Fermer" with OnClickListener.
-        builder.setNegativeButton("Fermer", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                AppelToast.displayCustomToast(activity, Message.TOAST_DIALOG_BOUTON_FERMER.toString());
-                //  Cancel
-                dialog.cancel();
-            }
+        builder.setNegativeButton("Fermer", (dialog, id) -> {
+            AppelToast.displayCustomToast(activity, Message.TOAST_DIALOG_BOUTON_FERMER.toString());
+            //  Cancel
+            dialog.cancel();
         });
 
         // Creer AlertDialog:
@@ -126,25 +113,20 @@ public class AppelDialog {
             i++;
         }
 
-        builder.setItems(listMP_nom, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                edt_id.setText(listMP_id[which]);
-                edt_mp_unite.setText(listMP_unite[which]);
-                AppelToast.displayCustomToast(activity, Message.TOAST_DIALOG_MP.toString() + listMP_nom[which]);
-            }
+        builder.setItems(listMP_nom, (dialog, which) -> {
+            edt_id.setText(listMP_id[which]);
+            edt_mp_unite.setText(listMP_unite[which]);
+            AppelToast.displayCustomToast(activity, Message.TOAST_DIALOG_MP.toString() + listMP_nom[which]);
         });
 
         builder.setCancelable(true);
         builder.setIcon(R.drawable.icon_app);
 
         // Creer button "Fermer" with OnClickListener.
-        builder.setNegativeButton("Fermer", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                AppelToast.displayCustomToast(activity, Message.TOAST_DIALOG_BOUTON_FERMER.toString());
-                //  Cancel
-                dialog.cancel();
-            }
+        builder.setNegativeButton("Fermer", (dialog, id) -> {
+            AppelToast.displayCustomToast(activity, Message.TOAST_DIALOG_BOUTON_FERMER.toString());
+            //  Cancel
+            dialog.cancel();
         });
 
         // Creer AlertDialog:
@@ -170,24 +152,19 @@ public class AppelDialog {
             i++;
         }
 
-        builder.setItems(str_listCategorie, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                edt_id.setText(str_listCategorie_id[which]);
-                AppelToast.displayCustomToast(activity, "C'est " + str_listCategorie[which]);
-            }
+        builder.setItems(str_listCategorie, (dialog, which) -> {
+            edt_id.setText(str_listCategorie_id[which]);
+            AppelToast.displayCustomToast(activity, "C'est " + str_listCategorie[which]);
         });
 
         builder.setCancelable(true);
         builder.setIcon(R.drawable.icon_app);
 
         // Creer button "Fermer" with OnClickListener.
-        builder.setNegativeButton("Fermer", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                AppelToast.displayCustomToast(activity, Message.TOAST_DIALOG_BOUTON_FERMER.toString());
-                //  Cancel
-                dialog.cancel();
-            }
+        builder.setNegativeButton("Fermer", (dialog, id) -> {
+            AppelToast.displayCustomToast(activity, Message.TOAST_DIALOG_BOUTON_FERMER.toString());
+            //  Cancel
+            dialog.cancel();
         });
 
         // Creer AlertDialog:
@@ -204,38 +181,32 @@ public class AppelDialog {
         // Permettre d'annuller la demande
         builder.setCancelable(true);
         // Creer button "Annuller avec OnClickListener qui permettre fermer le dialog et annuller la demmande
-        builder.setNeutralButton("Annuller", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                AppelToast.displayCustomToast(context,Message.TOAST_DIALOG_BOUTON_ANNULLER.toString());
-                dialog.cancel();
-            }
+        builder.setNeutralButton("Annuller", (dialog, id) -> {
+            AppelToast.displayCustomToast(context,Message.TOAST_DIALOG_BOUTON_ANNULLER.toString());
+            dialog.cancel();
         });
         // Creer le button "Modifier" avec OnClickListener qui permmettre d'aller au page Supprimer pour supprimer un produit
-        builder.setNegativeButton("Modifier", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                AppelToast.displayCustomToast(context, Message.TOAST_DIALOG_BOUTON_MODIFIER.toString() + NameExtra.CATEGORIE.toString());
-                String categorie_id = String.valueOf(categorie.getCategorie_id());
-                // On crée un Intent (Une intention)
-                Intent intent = new Intent(context, PageCategorie.class);
+        builder.setNegativeButton("Modifier", (dialog, id) -> {
+            AppelToast.displayCustomToast(context, Message.TOAST_DIALOG_BOUTON_MODIFIER.toString() + NameExtra.CATEGORIE.toString());
+            String categorie_id = String.valueOf(categorie.getCategorie_id());
+            // On crée un Intent (Une intention)
+            Intent intent = new Intent(context, PageCategorie.class);
 
-                intent.putExtra(NameExtra.CATEGORIE_ID.toString(), categorie_id);
+            intent.putExtra(NameExtra.CATEGORIE_ID.toString(), categorie_id);
 
-                context.startActivity(intent);
-            }
+            context.startActivity(intent);
         });
 
         // Creer le button "Afficher liste des Produits" avec OnClickListener qui permmettre d'aller au page Supprimer pour supprimer un produit
-        builder.setPositiveButton("Afficher", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                AppelToast.displayCustomToast(context, Message.TOAST_DIALOG_BUTTON_AFFICHER_PRODUIT.toString());
-                String categorie_id = String.valueOf(categorie.getCategorie_id());
-                // On crée un Intent (Une intention)
-                Intent intent = new Intent(context, PageListeProduits.class);
+        builder.setPositiveButton("Afficher", (dialog, id) -> {
+            AppelToast.displayCustomToast(context, Message.TOAST_DIALOG_BUTTON_AFFICHER_PRODUIT.toString());
+            String categorie_id = String.valueOf(categorie.getCategorie_id());
+            // On crée un Intent (Une intention)
+            Intent intent = new Intent(context, PageListeProduits.class);
 
-                intent.putExtra(NameExtra.CATEGORIE_ID.toString(), categorie_id);
+            intent.putExtra(NameExtra.CATEGORIE_ID.toString(), categorie_id);
 
-                context.startActivity(intent);
-            }
+            context.startActivity(intent);
         });
 
         // Creer AlertDialog:
@@ -244,40 +215,41 @@ public class AppelDialog {
 
     }
 
-    public static void showProgressDialog(Context context){
+   /* public static void showProgressDialog(Context context){
 
             ProgressDialog pd;
             pd = new ProgressDialog(context);
             pd.setMessage(Message.PROGRESS.toString());
             pd.setCancelable(false);
             pd.show();
-    }
+    }*/
 
     public static void showAlerDialogZero(Context context, NameExtra i_nameExtra){
 
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        // Set Title and Message:
+        // Mettre Title et Message pour le dialog pour chaque cas
+        // message au liste des produit ou liste des matiere premier s'il y a au moins 1 produit ou 1 matiere premiere est plus en stock
         if ((i_nameExtra.equals(NameExtra.PRODUIT)) || (i_nameExtra.equals(NameExtra.MP))) {
             builder.setTitle("ATTENTION").setMessage(" Il y a " + i_nameExtra.toString() +Message.DIALOG_MESSAGE_PHASE_PAS_EN_STOCK.toString());
-        } else if(i_nameExtra.equals(NameExtra.PRODUIT_ID)){
+        } // message de la page produit si le quantite du produit est negatif ou egale 0
+        else if(i_nameExtra.equals(NameExtra.PRODUIT_ID)){
             builder.setTitle("ATTENTION").setMessage( NameExtra.PRODUIT.toString().toUpperCase() + Message.DIALOG_MESSAGE_PAS_EN_STOCK.toString());
-        } else if (i_nameExtra.equals(NameExtra.MP_ID)){
+        } // message de la page produit si le quantite de la matiere premiere est negatif ou egale 0
+        else if (i_nameExtra.equals(NameExtra.MP_ID)){
             builder.setTitle("ATTENTION").setMessage(NameExtra.MP.toString().toUpperCase() + Message.DIALOG_MESSAGE_PAS_EN_STOCK.toString());
         }
-
-        //
+        // Mettre cet alertdialog peut etre annulle
         builder.setCancelable(true);
+        // Mettre le icon pour cet alertdialog
         builder.setIcon(R.drawable.icon_app);
-
         // Create "Negative" button with OnClickListener.
-        builder.setNegativeButton("Fermer", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                //  Cancel
-                dialog.cancel();
-            }
+        builder.setNegativeButton("Fermer", (dialog, id) -> {
+            //  Cancel
+            dialog.cancel();
         });
         // Create AlertDialog:
         AlertDialog alert = builder.create();
+        // Afficage AlerDialog
         alert.show();
     }
 
@@ -292,21 +264,17 @@ public class AppelDialog {
         builder.setIcon(R.drawable.icon_app);
 
         // Create "Positive" button with OnClickListener.
-        builder.setPositiveButton("Oui", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
+        builder.setPositiveButton("Oui", (dialog, id) -> {
 
-                AppelToast.displayCustomToast(context, Message.TOAST_DIALOG_BUTTON_OUI_DECONNEXION.toString());
-                AppelIntent.appelIntentSimple(context, PageDeconnexion.class);
-            }
+            AppelToast.displayCustomToast(context, Message.TOAST_DIALOG_BUTTON_OUI_DECONNEXION.toString());
+            AppelIntent.appelIntentSimple(context, PageDeconnexion.class);
         });
 
         // Create "Negative" button with OnClickListener.
-        builder.setNegativeButton("Non", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                AppelToast.displayCustomToast(context, Message.TOAST_DIALOG_BUTON_NON_DECONNEXION.toString());
-                //  Cancel
-                dialog.cancel();
-            }
+        builder.setNegativeButton("Non", (dialog, id) -> {
+            AppelToast.displayCustomToast(context, Message.TOAST_DIALOG_BUTON_NON_DECONNEXION.toString());
+            //  Cancel
+            dialog.cancel();
         });
 
         // Create AlertDialog:
@@ -332,31 +300,22 @@ public class AppelDialog {
             i++;
         }
 
-        builder.setItems(str_listUsers, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                AppelIntent.appelIntentAvecExtraUser(activity, PageUser.class, str_listUsers_id[which] );
-            }
-        });
+        builder.setItems(str_listUsers, (dialog, which) -> AppelIntent.appelIntentAvecExtraUser(activity, PageUser.class, str_listUsers_id[which] ));
 
         builder.setCancelable(true);
         builder.setIcon(R.drawable.icon_app);
 
         // Creer button "Fermer" with OnClickListener.
-        builder.setNegativeButton("Fermer", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                AppelToast.displayCustomToast(activity, Message.TOAST_DIALOG_BOUTON_FERMER.toString());
-                //  Cancel
-                dialog.cancel();
-            }
+        builder.setNegativeButton("Fermer", (dialog, id) -> {
+            AppelToast.displayCustomToast(activity, Message.TOAST_DIALOG_BOUTON_FERMER.toString());
+            //  Cancel
+            dialog.cancel();
         });
 
         // Creer button "Ajouter" with OnClickListener.
-        builder.setPositiveButton("Nouveau Utilisateur", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                AppelIntent.appelIntentSimple(activity,PageUser.class);
-                dialog.cancel();
-            }
+        builder.setPositiveButton("Nouveau Utilisateur", (dialog, id) -> {
+            AppelIntent.appelIntentSimple(activity,PageUser.class);
+            dialog.cancel();
         });
 
         // Creer AlertDialog:
